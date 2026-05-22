@@ -698,7 +698,7 @@
 <p>يحدد هذا الملف </p>
 <ul>
 <li>يحدد كائنين بمفاتيح &quot;<bdi dir="ltr" class="odt-ltr-term">person1</bdi>&quot; و &quot;<bdi dir="ltr" class="odt-ltr-term">person2</bdi>&quot; على التوالي من النوع [<bdi dir="ltr" class="odt-ltr-term">Person</bdi>]</li>
-<li>يقوم بتهيئة الخصائص [<bdi dir="ltr" class="odt-ltr-term">name</bdi>, age] لكل شخص</li>
+<li>يقوم بتهيئة الخصائص [<bdi dir="ltr" class="odt-ltr-term">name, age</bdi>] لكل شخص</li>
 <li>ويحدد الطرق التي سيتم استدعاؤها أثناء الإنشاء الأولي للكائن [<bdi dir="ltr" class="odt-ltr-term">init-method</bdi>] وأثناء إتلاف الكائن [<bdi dir="ltr" class="odt-ltr-term">destroy-method</bdi>]</li>
 </ul>
 <p>بالنسبة لاختباراتنا، سنستخدم فئات اختبار <bdi dir="ltr" class="odt-ltr-term">NUnit.</bdi> ستكون الأولى على النحو التالي:</p>
@@ -915,7 +915,7 @@
 </code></pre></div>
 <p>تحتوي الفئة على:</p>
 <ul>
-<li>ثلاثة حقول خاصة: <strong>_type</strong> و<strong>_make و_owner</strong>. يمكن تهيئة هذه الحقول وقراءتها عبر الخصائص العامة. كما يمكن تهيئتها باستخدام منشئ <strong><bdi dir="ltr" class="odt-ltr-term">Car</bdi>(<bdi dir="ltr" class="odt-ltr-term">String</bdi>, <bdi dir="ltr" class="odt-ltr-term">String</bdi>, <bdi dir="ltr" class="odt-ltr-term">Person</bdi>)</strong>. تحتوي الفئة أيضًا على منشئ بدون حجج يسمح لك أولاً بإنشاء كائن [<bdi dir="ltr" class="odt-ltr-term">Car</bdi>] غير مهيأ ثم تهيئته عبر خصائصه العامة.</li>
+<li>ثلاثة حقول خاصة: <strong>_type</strong> و<strong>_make و_owner</strong>. يمكن تهيئة هذه الحقول وقراءتها عبر الخصائص العامة. كما يمكن تهيئتها باستخدام منشئ <strong><bdi dir="ltr" class="odt-ltr-term">Car</bdi>(<bdi dir="ltr" class="odt-ltr-term">String, String, Person</bdi>)</strong>. تحتوي الفئة أيضًا على منشئ بدون حجج يسمح لك أولاً بإنشاء كائن [<bdi dir="ltr" class="odt-ltr-term">Car</bdi>] غير مهيأ ثم تهيئته عبر خصائصه العامة.</li>
 <li>طريقة <strong><bdi dir="ltr" class="odt-ltr-term">toString</bdi></strong> لاسترداد قيمة كائن [<bdi dir="ltr" class="odt-ltr-term">Car</bdi>] كسلسلة</li>
 <li>طريقة <strong><bdi dir="ltr" class="odt-ltr-term">init</bdi></strong> التي سيستدعيها <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> فور إنشاء الكائن، وطريقة <strong><bdi dir="ltr" class="odt-ltr-term">destroy</bdi></strong> التي سيتم استدعاؤها عند إزالة الكائن</li>
 </ul>
@@ -972,7 +972,7 @@
 <a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="w">        </span><span class="nt">&lt;/constructor-arg&gt;</span>
 <a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="w">    </span><span class="nt">&lt;/object&gt;</span>
 </code></pre></div>
-<p>بدلاً من اختيار الطريقة التي تم عرضها سابقًا، اخترنا هنا استخدام منشئ الفئة <strong><bdi dir="ltr" class="odt-ltr-term">Car</bdi>(<bdi dir="ltr" class="odt-ltr-term">String</bdi>, <bdi dir="ltr" class="odt-ltr-term">String</bdi>, <bdi dir="ltr" class="odt-ltr-term">Person</bdi>)</strong>. بالإضافة إلى ذلك، يحدد العنصر الفردي [<bdi dir="ltr" class="odt-ltr-term">car1</bdi>] الطريقة التي سيتم استدعاؤها أثناء الإنشاء الأولي للكائن [<bdi dir="ltr" class="odt-ltr-term">init-method</bdi>] والطريقة التي سيتم استدعاؤها أثناء تدمير الكائن [<bdi dir="ltr" class="odt-ltr-term">destroy-method</bdi>].</p>
+<p>بدلاً من اختيار الطريقة التي تم عرضها سابقًا، اخترنا هنا استخدام منشئ الفئة <strong><bdi dir="ltr" class="odt-ltr-term">Car</bdi>(<bdi dir="ltr" class="odt-ltr-term">String, String, Person</bdi>)</strong>. بالإضافة إلى ذلك، يحدد العنصر الفردي [<bdi dir="ltr" class="odt-ltr-term">car1</bdi>] الطريقة التي سيتم استدعاؤها أثناء الإنشاء الأولي للكائن [<bdi dir="ltr" class="odt-ltr-term">init-method</bdi>] والطريقة التي سيتم استدعاؤها أثناء تدمير الكائن [<bdi dir="ltr" class="odt-ltr-term">destroy-method</bdi>].</p>
 <p>لإجراء اختباراتنا، سنستخدم فئة اختبار <bdi dir="ltr" class="odt-ltr-term">NUnit</bdi> التالية [<bdi dir="ltr" class="odt-ltr-term">NunitTestSpringIocDemo2</bdi>]:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">Imports</span><span class="w"> </span><span class="nn">System</span>
 <a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="k">Imports</span><span class="w"> </span><span class="nn">Spring.Objects.Factory.Xml</span>

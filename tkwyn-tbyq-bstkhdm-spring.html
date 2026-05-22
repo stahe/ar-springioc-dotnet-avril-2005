@@ -543,7 +543,7 @@
 
 <h1 id="2-spring">2. <span style="color: #365f91">تكوين تطبيق باستخدام <bdi dir="ltr" class="odt-ltr-term">Spring</bdi></span></h1>
 <p>لنتأمل تطبيقًا كلاسيكيًا ثلاثي الطبقات:</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000006EA000001322F08DDC2.png" width="680" height="118" style="display:inline-block; margin:4px;width:17.997cm;height:3.112cm;" class="odt-zoomable" data-zoom-src="images/10000000000006EA000001322F08DDC2.png" /></td></tr></table>
+<table dir="rtl" class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td dir="rtl" style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: right;"><img src="images/10000000000006EA000001322F08DDC2.png" width="680" height="118" style="display:inline-block; margin:4px;width:17.997cm;height:3.112cm;" class="odt-zoomable" data-zoom-src="images/10000000000006EA000001322F08DDC2.png" /></td></tr></table>
 
 <p>سنفترض أن الوصول إلى طبقة <bdi dir="ltr" class="odt-ltr-term">DAO</bdi> يتم التحكم فيه بواسطة واجهة [<bdi dir="ltr" class="odt-ltr-term">IArticlesDao</bdi>]:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">....</span>
@@ -596,19 +596,19 @@
 <a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="k">End</span><span class="w"> </span><span class="k">NameSpace</span>
 </code></pre></div>
 <p>لإجراء عملية على مصدر <bdi dir="ltr" class="odt-ltr-term">ODBC</bdi>، تتطلب كل طريقة كائن [<bdi dir="ltr" class="odt-ltr-term">OdbcConnection</bdi>] يمثل الاتصال بقاعدة البيانات الذي سيتم من خلاله تبادل البيانات بين قاعدة البيانات والتطبيق. لإنشاء هذا الكائن، يلزم توفر ثلاث معلومات:</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<table dir="rtl" class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td dir="rtl" style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: right;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>DSN كسلسلة
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">اسم مصدر <bdi dir="ltr" class="odt-ltr-term">ODBC</bdi></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td dir="rtl" style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: right;"><div style="margin:0 0 0.5em 0">اسم مصدر <bdi dir="ltr" class="odt-ltr-term">ODBC</bdi></div></td></tr><tr><td dir="rtl" style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: right;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>user As String
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">اسم المستخدم المستخدم لتسجيل الدخول</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td dir="rtl" style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: right;"><div style="margin:0 0 0.5em 0">اسم المستخدم المستخدم لتسجيل الدخول</div></td></tr><tr><td dir="rtl" style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: right;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>كلمة المرور كسلسلة
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">كلمة المرور المرتبطة بهذه الهوية</div></td></tr></table>
+</div></td><td dir="rtl" style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: right;"><div style="margin:0 0 0.5em 0">كلمة المرور المرتبطة بهذه الهوية</div></td></tr></table>
 
 <p>تحصل فئة [<bdi dir="ltr" class="odt-ltr-term">ArticlesDaoPlainODBC</bdi>] الخاصة بنا على هذه المعلومات عبر الوكيل الخارجي الذي يقوم بإنشاء مثيل للفئة. قد يتساءل المرء عن كيفية حصول الوكيل على المعلومات الثلاث المطلوبة لإنشاء مثيل لفئة [<bdi dir="ltr" class="odt-ltr-term">ArticlesDaoPlainODBC</bdi>]. لنأخذ مثالاً على ذلك. لنفترض أننا نريد كتابة فئة اختبار لطبقة [<bdi dir="ltr" class="odt-ltr-term">Dao</bdi>]. سيكون لدينا البنية التالية:</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000055B000000C7F7381DD1.png" width="680" height="99" style="display:inline-block; margin:4px;width:17.997cm;height:2.612cm;" class="odt-zoomable" data-zoom-src="images/100000000000055B000000C7F7381DD1.png" /></td></tr></table>
+<table dir="rtl" class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td dir="rtl" style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: right;"><img src="images/100000000000055B000000C7F7381DD1.png" width="680" height="99" style="display:inline-block; margin:4px;width:17.997cm;height:2.612cm;" class="odt-zoomable" data-zoom-src="images/100000000000055B000000C7F7381DD1.png" /></td></tr></table>
 
 <p>قد يبدو الهيكل الأساسي لفئة اختبار <bdi dir="ltr" class="odt-ltr-term">NUnit</bdi> [<a href="http://www.nunit.org/"><u><span style="color: #0563c1"><bdi dir="ltr" class="odt-ltr-term">http://www.nunit.org/</bdi></span></u></a>] كما يلي:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">Imports</span><span class="w"> </span><span class="nn">System</span>
