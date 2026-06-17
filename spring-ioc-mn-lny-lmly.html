@@ -12,7 +12,7 @@
         <meta name="author" content="Serge Tahé">
       
       
-        <link rel="canonical" href="https://stahe.github.io/ar-springioc-dotnet-avril-2005/spring-ioc-fy-lmmrs-lmly.html">
+        <link rel="canonical" href="https://stahe.github.io/ar-springioc-dotnet-avril-2005/spring-ioc-mn-lny-lmly.html">
       
       
         <link rel="prev" href="qn-ltby.html">
@@ -29,7 +29,7 @@
     
     
       
-        <title>5. Spring IoC في الممارسة العملية - Spring IoC لـ .NET</title>
+        <title>5. Spring IoC من الناحية العملية - Spring IoC لـ .NET</title>
       
     
     
@@ -130,7 +130,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              5. Spring IoC في الممارسة العملية
+              5. Spring IoC من الناحية العملية
             
           </span>
         </div>
@@ -359,14 +359,14 @@
   
   
     <li class="md-nav__item">
-      <a href="nks-ltkm-ioc.html" class="md-nav__link">
+      <a href="ks-ltkm-ioc.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    3. انعكاس التحكم (IoC)
+    3. عكس التحكم IoC
   
 
     
@@ -429,7 +429,7 @@
   <span class="md-ellipsis">
     
   
-    5. Spring IoC في الممارسة العملية
+    5. Spring IoC من الناحية العملية
   
 
     
@@ -440,14 +440,14 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <a href="spring-ioc-fy-lmmrs-lmly.html" class="md-nav__link md-nav__link--active">
+      <a href="spring-ioc-mn-lny-lmly.html" class="md-nav__link md-nav__link--active">
         
   
   
   <span class="md-ellipsis">
     
   
-    5. Spring IoC في الممارسة العملية
+    5. Spring IoC من الناحية العملية
   
 
     
@@ -547,14 +547,14 @@
   
   
     <li class="md-nav__item">
-      <a href="ll.html" class="md-nav__link">
+      <a href="l.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    7. الحل
+    7. حل
   
 
     
@@ -611,22 +611,22 @@
 
 
 
-<h1 id="5-spring-ioc">5. <span style="color: #365f91"><bdi dir="ltr" class="odt-ltr-term">Spring IoC</bdi> في الممارسة العملية</span></h1>
-<p>سنستخدم الآن أمثلة لتطبيق ما رأيناه سابقًا عمليًا.</p>
+<h1 id="5-spring-ioc">5. <span style="color: #365f91"><bdi dir="ltr" class="odt-ltr-term">Spring IoC</bdi> من الناحية العملية</span></h1>
+<p>سنناقش الآن، من خلال أمثلة، تطبيق ما رأيناه سابقًا عمليًّا.</p>
 <h2 id="51-1">5.1. <span style="color: #4f81bd">المثال 1</span></h2>
-<p>فئة [<bdi dir="ltr" class="odt-ltr-term">Person.vb</bdi>] هي كما يلي:</p>
+<p>الفئة [<bdi dir="ltr" class="odt-ltr-term">Personne.vb</bdi>] هي كما يلي:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">Namespace</span><span class="w"> </span><span class="nn">istia.st.springioc.demos</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="k">Public</span><span class="w"> </span><span class="k">Class</span><span class="w"> </span><span class="nc">Personne</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">        </span><span class="c">&#39; private fields</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">         </span><span class="c">&#39; الحقول الخاصة</span>
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">        </span><span class="k">Private</span><span class="w"> </span><span class="n">_nom</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="kt">String</span>
 <a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">        </span><span class="k">Private</span><span class="w"> </span><span class="n">_age</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="kt">Integer</span>
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">        </span><span class="c">&#39; default builder</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">         </span><span class="c">&#39; منشئ افتراضي</span>
 <a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">        </span><span class="k">Public</span><span class="w"> </span><span class="k">Sub</span><span class="w"> </span><span class="nf">New</span><span class="p">()</span>
 <a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">        </span><span class="k">End</span><span class="w"> </span><span class="k">Sub</span>
 <a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">        </span><span class="c">&#39; properties associated with private fields</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">         </span><span class="c">&#39; الخصائص المرتبطة بالحقول الخاصة</span>
 <a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">        </span><span class="k">Public</span><span class="w"> </span><span class="k">Property</span><span class="w"> </span><span class="nf">nom</span><span class="p">()</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="kt">String</span>
 <a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">            </span><span class="k">Get</span>
 <a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">                </span><span class="k">Return</span><span class="w"> </span><span class="n">_nom</span>
@@ -645,17 +645,17 @@
 <a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">            </span><span class="k">End</span><span class="w"> </span><span class="k">Set</span>
 <a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">        </span><span class="k">End</span><span class="w"> </span><span class="k">Property</span>
 <a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>
-<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">        </span><span class="c">&#39; identity chain</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">         </span><span class="c">&#39; سلسلة الهوية</span>
 <a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">        </span><span class="k">Public</span><span class="w"> </span><span class="k">Overrides</span><span class="w"> </span><span class="k">Function</span><span class="w"> </span><span class="nf">tostring</span><span class="p">()</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="kt">String</span>
 <a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="w">            </span><span class="k">Return</span><span class="w"> </span><span class="kt">String</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="s">&quot;[{0},{1}]&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">nom</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">)</span>
 <a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">        </span><span class="k">End</span><span class="w"> </span><span class="k">Function</span>
 <a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>
-<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="w">        </span><span class="c">&#39; init method</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="w">         </span><span class="c">&#39; طريقة init</span>
 <a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="w">        </span><span class="k">Public</span><span class="w"> </span><span class="k">Sub</span><span class="w"> </span><span class="nf">init</span><span class="p">()</span>
 <a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="w">            </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;init personne {0}&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">Me</span><span class="p">.</span><span class="n">ToString</span><span class="p">)</span>
 <a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="w">        </span><span class="k">End</span><span class="w"> </span><span class="k">Sub</span>
 <a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>
-<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="w">        </span><span class="c">&#39; close method</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="w">         </span><span class="c">&#39; طريقة الإغلاق</span>
 <a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="w">        </span><span class="k">Public</span><span class="w"> </span><span class="k">Sub</span><span class="w"> </span><span class="nf">close</span><span class="p">()</span>
 <a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="w">            </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;destroy personne {0}&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">Me</span><span class="p">.</span><span class="n">ToString</span><span class="p">)</span>
 <a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="w">        </span><span class="k">End</span><span class="w"> </span><span class="k">Sub</span>
@@ -665,11 +665,11 @@
 </code></pre></div>
 <p>تحتوي الفئة على:</p>
 <ul>
-<li>حقلين خاصين، <strong>الاسم والعمر،</strong> يمكن الوصول إليهما عبر الخصائص</li>
-<li>طريقة <strong><bdi dir="ltr" class="odt-ltr-term">toString</bdi></strong> لاسترداد قيمة كائن [<bdi dir="ltr" class="odt-ltr-term">Person</bdi>] كسلسلة</li>
-<li>طريقة <strong><bdi dir="ltr" class="odt-ltr-term">init</bdi></strong> التي سيتم استدعاؤها بواسطة <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> عند إنشاء الكائن، وطريقة <strong><bdi dir="ltr" class="odt-ltr-term">close</bdi></strong> التي سيتم استدعاؤها عند تدمير الكائن</li>
+<li>حقلين خاصين هما <strong>«الاسم» و«العمر»</strong> يمكن الوصول إليهما عبر خصائص</li>
+<li>طريقة <strong><bdi dir="ltr" class="odt-ltr-term">toString</bdi></strong> لاسترداد قيمة الكائن [<bdi dir="ltr" class="odt-ltr-term">Personne</bdi>] في شكل سلسلة أحرف</li>
+<li>طريقة <strong><bdi dir="ltr" class="odt-ltr-term">init</bdi></strong> التي سيستدعيها <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> عند إنشاء الكائن، وطريقة <strong><bdi dir="ltr" class="odt-ltr-term">close</bdi></strong> التي سيستدعيها عند تدمير الكائن</li>
 </ul>
-<p>لإنشاء كائنات من النوع [<bdi dir="ltr" class="odt-ltr-term">Person</bdi>]، سنستخدم ملف <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> [<bdi dir="ltr" class="odt-ltr-term">spring-config-1.xml</bdi>] التالي:</p>
+<p>لإنشاء كائنات من النوع [<bdi dir="ltr" class="odt-ltr-term">Personne</bdi>]، سنستخدم ملف <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> [<bdi dir="ltr" class="odt-ltr-term">spring-config-1.xml</bdi>] التالي:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;iso-8859-1&quot; ?&gt;</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="cp">&lt;!DOCTYPE objects PUBLIC &quot;-//SPRING//DTD OBJECT//EN&quot;</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="cp">&quot;http://www.springframework.net/dtd/spring-objects.dtd&quot;&gt;</span>
@@ -695,13 +695,13 @@
 <a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="w">    </span><span class="nt">&lt;/object&gt;</span>
 <a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="nt">&lt;/objects&gt;</span>
 </code></pre></div>
-<p>يحدد هذا الملف </p>
+<p>يُعرّف هذا الملف </p>
 <ul>
-<li>يحدد كائنين بمفاتيح &quot;<bdi dir="ltr" class="odt-ltr-term">person1</bdi>&quot; و &quot;<bdi dir="ltr" class="odt-ltr-term">person2</bdi>&quot; على التوالي من النوع [<bdi dir="ltr" class="odt-ltr-term">Person</bdi>]</li>
-<li>يقوم بتهيئة الخصائص [<bdi dir="ltr" class="odt-ltr-term">name, age</bdi>] لكل شخص</li>
-<li>ويحدد الطرق التي سيتم استدعاؤها أثناء الإنشاء الأولي للكائن [<bdi dir="ltr" class="odt-ltr-term">init-method</bdi>] وأثناء إتلاف الكائن [<bdi dir="ltr" class="odt-ltr-term">destroy-method</bdi>]</li>
+<li>يحدد كائنين للمفاتيح &quot;<bdi dir="ltr" class="odt-ltr-term">personne1</bdi>&quot; و&quot;<bdi dir="ltr" class="odt-ltr-term">personne2</bdi>&quot; على التوالي من النوع [<bdi dir="ltr" class="odt-ltr-term">Personne</bdi>]</li>
+<li>ويقوم بتهيئة خصائص [<bdi dir="ltr" class="odt-ltr-term">nom, age</bdi>] لكل شخص</li>
+<li>ويحدد الطرق التي يجب استدعاؤها عند الإنشاء الأولي للكائن [<bdi dir="ltr" class="odt-ltr-term">init-method</bdi>] وعند إتلاف الكائن [<bdi dir="ltr" class="odt-ltr-term">destroy-method</bdi>]</li>
 </ul>
-<p>بالنسبة لاختباراتنا، سنستخدم فئات اختبار <bdi dir="ltr" class="odt-ltr-term">NUnit.</bdi> ستكون الأولى على النحو التالي:</p>
+<p>لإجراء اختباراتنا، سنستخدم فئات اختبار <bdi dir="ltr" class="odt-ltr-term">NUnit.</bdi> وستكون الفئة الأولى كما يلي:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">Imports</span><span class="w"> </span><span class="nn">System</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">Imports</span><span class="w"> </span><span class="nn">Spring.Objects.Factory.Xml</span>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">Imports</span><span class="w"> </span><span class="nn">System.IO</span>
@@ -712,20 +712,20 @@
 <a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
 <a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">    </span><span class="o">&lt;</span><span class="n">TestFixture</span><span class="p">()</span><span class="o">&gt;</span><span class="w"> </span>_
 <a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">    </span><span class="k">Public</span><span class="w"> </span><span class="k">Class</span><span class="w"> </span><span class="nc">NunitTestSpringIocDemo1</span>
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">        </span><span class="c">&#39; the test object</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">         </span><span class="c">&#39; الكائن المراد اختباره</span>
 <a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">        </span><span class="k">Private</span><span class="w"> </span><span class="n">factory</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="n">XmlObjectFactory</span>
 <a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>
 <a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">        </span><span class="o">&lt;</span><span class="n">SetUp</span><span class="p">()</span><span class="o">&gt;</span><span class="w"> </span>_
 <a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">        </span><span class="k">Public</span><span class="w"> </span><span class="k">Sub</span><span class="w"> </span><span class="nf">init</span><span class="p">()</span>
-<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">            </span><span class="c">&#39; create a factory instance</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">             </span><span class="c">&#39; يتم إنشاء مثيل من المصنع</span>
 <a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">            </span><span class="n">factory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">New</span><span class="w"> </span><span class="n">XmlObjectFactory</span><span class="p">(</span><span class="k">New</span><span class="w"> </span><span class="n">FileStream</span><span class="p">(</span><span class="s">&quot;spring-config-1.xml&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">FileMode</span><span class="p">.</span><span class="n">Open</span><span class="p">))</span>
-<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">            </span><span class="c">&#39; log</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">             </span><span class="c">&#39; السجل</span>
 <a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="w">            </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;setup test&quot;</span><span class="p">)</span>
 <a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w">        </span><span class="k">End</span><span class="w"> </span><span class="k">Sub</span>
 <a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>
 <a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="w">        </span><span class="o">&lt;</span><span class="n">Test</span><span class="p">()</span><span class="o">&gt;</span><span class="w"> </span>_
 <a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="w">        </span><span class="k">Public</span><span class="w"> </span><span class="k">Sub</span><span class="w"> </span><span class="nf">demo</span><span class="p">()</span>
-<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="w">            </span><span class="c">&#39; retrieve [Person] objects from the Spring file using their keys</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="w">             </span><span class="c">&#39; استرداد الكائنات [Personne] من ملف Spring باستخدام مفاتيحها</span>
 <a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="w">            </span><span class="k">Dim</span><span class="w"> </span><span class="n">personne1</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="n">Personne</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">CType</span><span class="p">(</span><span class="n">factory</span><span class="p">.</span><span class="n">GetObject</span><span class="p">(</span><span class="s">&quot;personne1&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">Personne</span><span class="p">)</span>
 <a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a><span class="w">            </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;personne1=&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">personne1</span><span class="p">.</span><span class="n">ToString</span><span class="p">())</span>
 <a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a><span class="w">            </span><span class="k">Dim</span><span class="w"> </span><span class="n">personne2</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="n">Personne</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">CType</span><span class="p">(</span><span class="n">factory</span><span class="p">.</span><span class="n">GetObject</span><span class="p">(</span><span class="s">&quot;personne2&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">Personne</span><span class="p">)</span>
@@ -736,11 +736,11 @@
 <a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a>
 <a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a><span class="w">        </span><span class="o">&lt;</span><span class="n">TearDown</span><span class="p">()</span><span class="o">&gt;</span><span class="w"> </span>_
 <a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a><span class="w">        </span><span class="k">Public</span><span class="w"> </span><span class="k">Sub</span><span class="w"> </span><span class="nf">destroy</span><span class="p">()</span>
-<a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a><span class="w">            </span><span class="c">&#39; we destroy the singletons</span>
+<a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a><span class="w">             </span><span class="c">&#39; يتم تدمير الكائنات الفردية</span>
 <a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a><span class="w">            </span><span class="n">factory</span><span class="p">.</span><span class="n">Dispose</span><span class="p">()</span>
-<a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a><span class="w">            </span><span class="c">&#39; release the factory resource</span>
+<a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a><span class="w">             </span><span class="c">&#39; تحرير مورد المصنع</span>
 <a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a><span class="w">            </span><span class="n">factory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">Nothing</span>
-<a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a><span class="w">            </span><span class="c">&#39; follow-up</span>
+<a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a><span class="w">             </span><span class="c">&#39; المتابعة</span>
 <a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a><span class="w">            </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;teardown test&quot;</span><span class="p">)</span>
 <a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a><span class="w">        </span><span class="k">End</span><span class="w"> </span><span class="k">Sub</span>
 <a id="__codelineno-2-42" name="__codelineno-2-42" href="#__codelineno-2-42"></a>
@@ -749,32 +749,32 @@
 </code></pre></div>
 <p><strong>تعليقات</strong>:</p>
 <ul>
-<li>لاسترداد الكائنات المحددة في ملف [<bdi dir="ltr" class="odt-ltr-term">spring-config-1.xml</bdi>]، نستخدم كائنًا من النوع [<bdi dir="ltr" class="odt-ltr-term">XmlObjectFactory</bdi>]. هناك أنواع أخرى من &quot;المصانع&quot; التي تسمح بالوصول إلى الكائنات الفردية في ملف التكوين. يتم الحصول على كائن [<bdi dir="ltr" class="odt-ltr-term">XmlObjectFactory</bdi>] في طريقة السمة [<bdi dir="ltr" class="odt-ltr-term">SetUp</bdi>] لفئة الاختبار وتخزينه في متغير خاص. لاحظ أن الطريقة التي تحتوي على السمة &lt;<bdi dir="ltr" class="odt-ltr-term">Setup</bdi>()&gt; يتم تنفيذها قبل كل اختبار.</li>
-<li>سيتم وضع ملف [<bdi dir="ltr" class="odt-ltr-term">spring-config-1.xml</bdi>] في مجلد [bin] الخاص بالتطبيق</li>
-<li>يمكن لـ <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> استخدام ملفات التكوين بتنسيقات مختلفة. يُستخدم الكائن [<bdi dir="ltr" class="odt-ltr-term">XmlObjectFactory</bdi>] لتحليل ملف تكوين بتنسيق <bdi dir="ltr" class="odt-ltr-term">XML.</bdi></li>
-<li>تؤدي قراءة ملف <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> إلى إرجاع كائن من النوع [<bdi dir="ltr" class="odt-ltr-term">XmlObjectFactory</bdi>]، وهو في هذه الحالة كائن <strong><code>factory</code></strong>. باستخدام هذا الكائن، يمكن استرداد كائن فريد محدد بالمفتاح <code>**C**</code> باستخدام <code>**factory.getObject(C)**</code>.</li>
-<li>تسترد الطريقة [<bdi dir="ltr" class="odt-ltr-term">demo</bdi>] قيم الكائنات الفردية ذات المفاتيح &quot;<bdi dir="ltr" class="odt-ltr-term">person1</bdi>&quot; و &quot;<bdi dir="ltr" class="odt-ltr-term">person2</bdi>&quot; وتعرضها.</li>
+<li>للحصول على الكائنات المُعرَّفة في الملف [<bdi dir="ltr" class="odt-ltr-term">spring-config-1.xml</bdi>]، نستخدم كائنًا من النوع [<bdi dir="ltr" class="odt-ltr-term">XmlObjectFactory</bdi>]. وهناك أنواع أخرى من «المصانع» التي تتيح الوصول إلى الكائنات الفردية في ملف التكوين. يتم الحصول على الكائن [<bdi dir="ltr" class="odt-ltr-term">XmlObjectFactory</bdi>] في طريقة السمة [<bdi dir="ltr" class="odt-ltr-term">SetUp</bdi>] الخاصة بفئة الاختبار ويتم تخزينه في متغير خاص. تجدر الإشارة إلى أن الطريقة المزودة بالسمة &lt;<bdi dir="ltr" class="odt-ltr-term">Setup</bdi>()&gt; يتم تنفيذها قبل كل اختبار.</li>
+<li>سيتم وضع الملف [<bdi dir="ltr" class="odt-ltr-term">spring-config-1.xml</bdi>] في المجلد [bin] الخاص بالتطبيق</li>
+<li>يمكن لـ <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> استخدام ملفات التكوين ذات التنسيقات المختلفة. يتيح الكائن [<bdi dir="ltr" class="odt-ltr-term">XmlObjectFactory</bdi>] تحليل ملف تكوين بتنسيق <bdi dir="ltr" class="odt-ltr-term">XML.</bdi></li>
+<li>يؤدي تشغيل ملف <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> إلى إنتاج كائن من النوع [<bdi dir="ltr" class="odt-ltr-term">XmlObjectFactory</bdi>]، وهو هنا كائن <strong>المصنع</strong>. باستخدام هذا الكائن، يمكن الحصول على كائن فريد (<bdi dir="ltr" class="odt-ltr-term">singleton</bdi>) محدد بالمفتاح <strong><bdi dir="ltr" class="odt-ltr-term">C</bdi></strong>، عن طريق <strong><bdi dir="ltr" class="odt-ltr-term">factory.getObject</bdi>(<bdi dir="ltr" class="odt-ltr-term">C</bdi>)</strong>.</li>
+<li>تقوم الطريقة [<bdi dir="ltr" class="odt-ltr-term">demo</bdi>] باستدعاء وعرض قيمة الكائنات الفردية ذات المفتاحين &quot;<bdi dir="ltr" class="odt-ltr-term">personne1</bdi>&quot; و&quot;<bdi dir="ltr" class="odt-ltr-term">personne2</bdi>&quot;.</li>
 </ul>
 <p>هيكل مشروع <bdi dir="ltr" class="odt-ltr-term">Visual Studio</bdi> هو كما يلي:</p>
 <p><img src="images/100000000000011F0000017270D06E66.png" width="241" height="310" style="width:6.366cm;height:8.207cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000011F0000017270D06E66.png" /></p>
 <p><strong>تعليقات</strong>:</p>
 <ul>
-<li>يُسمى مشروع <bdi dir="ltr" class="odt-ltr-term">VS</bdi> [<bdi dir="ltr" class="odt-ltr-term">demo1</bdi>]</li>
-<li>يحتوي المجلد [<bdi dir="ltr" class="odt-ltr-term">istia</bdi>] على شفرة المصدر. ستنتقل الشفرة المُجمَّعة إلى المجلد [bin] في ملف <bdi dir="ltr" class="odt-ltr-term">DLL</bdi> [<bdi dir="ltr" class="odt-ltr-term">demo1.dll</bdi>]:</li>
+<li>يُسمى المشروع <bdi dir="ltr" class="odt-ltr-term">VS</bdi> باسم [<bdi dir="ltr" class="odt-ltr-term">demo1</bdi>]</li>
+<li>يحتوي المجلد [<bdi dir="ltr" class="odt-ltr-term">istia</bdi>] على أكواد المصدر. ستُنقل الأكواد المُجمَّعة إلى المجلد [bin] الموجود داخل المجلد <bdi dir="ltr" class="odt-ltr-term">DLL</bdi> [<bdi dir="ltr" class="odt-ltr-term">demo1.dll</bdi>]:</li>
 </ul>
-<p><img src="images/1000000000000149000000BDB4B91522.png" width="329" height="189" style="width:8.701cm;height:4.999cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000149000000BDB4B91522.png" /></p>
+<p><img src="images/1000000000000149000000BDB4B91522.png" width="329" height="189" style="width:8.701cm;height:5.001cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000149000000BDB4B91522.png" /></p>
 <ul>
-<li>يوجد ملف [<bdi dir="ltr" class="odt-ltr-term">spring-config-1.xml</bdi>] في مجلد [bin] الخاص بالمشروع.</li>
-<li>يحتوي المجلد [bin] على الملفات المطلوبة للتطبيق:<ul>
-<li><strong><bdi dir="ltr" class="odt-ltr-term">Spring.Core.dll</bdi>، <bdi dir="ltr" class="odt-ltr-term">Spring.Core.xml</bdi></strong> لفئات <bdi dir="ltr" class="odt-ltr-term">Spring</bdi></li>
+<li>يوجد الملف [<bdi dir="ltr" class="odt-ltr-term">spring-config-1.xml</bdi>] في المجلد [bin] الخاص بالمشروع.</li>
+<li>يحتوي المجلد [bin] على الملفات اللازمة للتطبيق:<ul>
+<li><strong><bdi dir="ltr" class="odt-ltr-term">Spring.Core.dll</bdi>، <bdi dir="ltr" class="odt-ltr-term">Spring.Core.xml</bdi></strong>  لفئات <bdi dir="ltr" class="odt-ltr-term">Spring</bdi></li>
 <li><strong><bdi dir="ltr" class="odt-ltr-term">log4net.dll</bdi></strong> لسجلات <bdi dir="ltr" class="odt-ltr-term">Spring</bdi></li>
-<li><strong><bdi dir="ltr" class="odt-ltr-term">demo1.dll</bdi></strong>، وهو ملف <bdi dir="ltr" class="odt-ltr-term">DLL</bdi> الذي تم إنشاؤه بواسطة المشروع</li>
+<li><strong><bdi dir="ltr" class="odt-ltr-term">demo1.dll</bdi></strong> وهو ملف <bdi dir="ltr" class="odt-ltr-term">DLL</bdi> الذي تم إنشاؤه أثناء إنشاء المشروع</li>
 </ul>
 </li>
 </ul>
-<p>يتم تحميل ملف <bdi dir="ltr" class="odt-ltr-term">DLL</bdi> [<bdi dir="ltr" class="odt-ltr-term">demo1.dll</bdi>] الذي تم إنشاؤه بواسطة المشروع في أداة الاختبار الرسومية [<bdi dir="ltr" class="odt-ltr-term">Nunit-Gui 2.2</bdi>]. تعرض هذه الأداة تلقائيًا فئات <bdi dir="ltr" class="odt-ltr-term">Nunit</bdi> الموجودة في ملف <bdi dir="ltr" class="odt-ltr-term">DLL:</bdi></p>
+<p>يتم تحميل ملف <bdi dir="ltr" class="odt-ltr-term">DLL</bdi> و [<bdi dir="ltr" class="odt-ltr-term">demo1.dll</bdi>] الناتجين عن إنشاء المشروع في أداة الاختبار الرسومية [<bdi dir="ltr" class="odt-ltr-term">Nunit-Gui 2.2</bdi>]. وتقوم هذه الأداة تلقائيًا بعرض فئات <bdi dir="ltr" class="odt-ltr-term">Nunit</bdi> الموجودة في ملف <bdi dir="ltr" class="odt-ltr-term">DLL:</bdi></p>
 <p><img src="images/10000000000002D90000010F89DCB0C5.png" width="510" height="190" style="width:13.501cm;height:5.018cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002D90000010F89DCB0C5.png" /></p>
-<p>يؤدي تنفيذ طريقة [<bdi dir="ltr" class="odt-ltr-term">demo</bdi>] لاختبار <bdi dir="ltr" class="odt-ltr-term">NUnit</bdi> إلى النتائج الموضحة أعلاه والمدرجة أدناه:</p>
+<p>يؤدي تنفيذ الطريقة [<bdi dir="ltr" class="odt-ltr-term">demo</bdi>] الخاصة باختبار <bdi dir="ltr" class="odt-ltr-term">NUnit</bdi> إلى النتائج الموضحة أعلاه والمذكورة أدناه:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
@@ -802,7 +802,7 @@
 </ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="w">            </span><span class="kd">Dim</span><span class="w"> </span><span class="nv">personne1</span><span class="w"> </span><span class="n">As</span><span class="w"> </span><span class="n">Personne</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CType</span><span class="p">(</span><span class="n">factory</span><span class="p">.</span><span class="nb">GetObject</span><span class="p">(</span><span class="s2">&quot;personne1&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">Personne</span><span class="p">)</span>
 </code></pre></div>
-<p>أجبرت على إنشاء الفول [<bdi dir="ltr" class="odt-ltr-term">person1</bdi>]. ولأننا كتبنا [<bdi dir="ltr" class="odt-ltr-term">init-method</bdi>=&quot;<bdi dir="ltr" class="odt-ltr-term">init</bdi>&quot;] في تعريف الفول [<bdi dir="ltr" class="odt-ltr-term">person1</bdi>]، تم تنفيذ طريقة [<bdi dir="ltr" class="odt-ltr-term">init</bdi>] للكائن [<bdi dir="ltr" class="odt-ltr-term">Person</bdi>] الذي تم إنشاؤه. يتم عرض الرسالة المقابلة.</p>
+<p>أجبرت على إنشاء البين [<bdi dir="ltr" class="odt-ltr-term">personne1</bdi>]. ونظرًا لأننا كتبنا [<bdi dir="ltr" class="odt-ltr-term">init-method</bdi>=&quot;<bdi dir="ltr" class="odt-ltr-term">init</bdi>&quot;] في تعريف الكائن الفردي [<bdi dir="ltr" class="odt-ltr-term">personne1</bdi>]، فقد تم تنفيذ الأسلوب [<bdi dir="ltr" class="odt-ltr-term">init</bdi>] الخاص بالكائن [<bdi dir="ltr" class="odt-ltr-term">Personne</bdi>] الذي تم إنشاؤه. ويتم عرض الرسالة المقابلة.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>init personne [Simon,40]
 </code></pre></div>
 <ul>
@@ -810,11 +810,11 @@
 </ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="w">            </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;personne1=&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">personne1</span><span class="p">.</span><span class="n">ToString</span><span class="p">())</span>
 </code></pre></div>
-<p>عرضت قيمة الكائن [<bdi dir="ltr" class="odt-ltr-term">Person</bdi>] الذي تم إنشاؤه.</p>
+<p>أدت إلى عرض قيمة الكائن [<bdi dir="ltr" class="odt-ltr-term">Personne</bdi>] الذي تم إنشاؤه.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>personne1=[Simon,40]
 </code></pre></div>
 <ul>
-<li>السطران 5-6: يحدث الأمر نفسه بالنسبة لـ <bdi dir="ltr" class="odt-ltr-term">bean</bdi> المفتاح [<bdi dir="ltr" class="odt-ltr-term">person2</bdi>].</li>
+<li>السطران 5-6: تتكرر نفس الظاهرة بالنسبة لـ <bdi dir="ltr" class="odt-ltr-term">bean</bdi> المفتاح [<bdi dir="ltr" class="odt-ltr-term">personne2</bdi>].</li>
 </ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>init personne [Brigitte,20]
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>personne2=[Brigitte,20]
@@ -825,35 +825,34 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">personne2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CType</span><span class="p">(</span><span class="n">factory</span><span class="p">.</span><span class="n">GetObject</span><span class="p">(</span><span class="s">&quot;personne2&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">Personne</span><span class="p">)</span>
 <a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;personne2=&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">personne2</span><span class="p">.</span><span class="n">ToString</span><span class="p">())</span>
 </code></pre></div>
-<p>أدى ذلك إلى ظهور سطر واحد فقط من النتائج:</p>
+<p>لم تسفر إلا عن سطر واحد معروض:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>personne2=[Brigitte,20]
 </code></pre></div>
-<p>وبالتالي، لم يؤد ذلك إلى إنشاء كائن جديد من النوع [<bdi dir="ltr" class="odt-ltr-term">Person</bdi>]. لو كان الأمر كذلك، لظهرت طريقة [<bdi dir="ltr" class="odt-ltr-term">init</bdi>]، وهو ما لم يحدث هنا. هذا هو مبدأ <strong><bdi dir="ltr" class="odt-ltr-term">singleton</bdi></strong>. بشكل افتراضي، يقوم <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> بإنشاء مثيل واحد فقط من <bdi dir="ltr" class="odt-ltr-term">beans</bdi> في ملف التكوين الخاص به. إنها خدمة مرجعية للكائنات. إذا طُلبت مرجعية لكائن لم يتم إنشاؤه بعد، فإنه يقوم بإنشائه وإرجاع مرجعية إليه. إذا كان الكائن قد تم إنشاؤه بالفعل، فإن <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> يقوم ببساطة بإرجاع مرجعية إليه.</p>
+<p>وبالتالي، لم تؤدِ إلى إنشاء كائن جديد من النوع [<bdi dir="ltr" class="odt-ltr-term">Personne</bdi>]. لو كان الأمر كذلك، لكان قد تم عرض طريقة [<bdi dir="ltr" class="odt-ltr-term">init</bdi>]، وهو ما لم يحدث هنا. هذا هو مبدأ الكائن <strong>الفريد</strong> (<strong><bdi dir="ltr" class="odt-ltr-term">singleton</bdi>)</strong>. لا يقوم <bdi dir="ltr" class="odt-ltr-term">Spring</bdi>، بشكل افتراضي، بإنشاء سوى نسخة واحدة من الكائنات (<bdi dir="ltr" class="odt-ltr-term">beans</bdi>) الموجودة في ملف التكوين الخاص به. وهو عبارة عن خدمة مرجعية للكائنات. إذا طُلب منه مرجع كائن لم يتم إنشاؤه بعد، فإنه يقوم بإنشائه ويقدم مرجعًا له. أما إذا كان الكائن قد تم إنشاؤه بالفعل، فإن <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> يكتفي بتقديم مرجع له.</p>
 <ul>
-<li>الأسطر 8–10: يتم تنفيذ طريقة السمة &lt;<bdi dir="ltr" class="odt-ltr-term">TearDown</bdi>()&gt; (السطر 10). داخلها، يتم تنفيذ العملية</li>
+<li>الأسطر 8-10: يتم تنفيذ طريقة السمة &lt;<bdi dir="ltr" class="odt-ltr-term">TearDown</bdi>()&gt; (السطر 10). وفي داخلها، تتم العملية</li>
 </ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="w">            </span><span class="nx">the</span><span class="w"> </span><span class="nx">singletons</span><span class="w"> </span><span class="nx">are</span><span class="w"> </span><span class="nx">destroyed</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">            </span><span class="err">&#39;</span><span class="w"> </span><span class="nx">on</span><span class="w"> </span><span class="nx">détruit</span><span class="w"> </span><span class="nx">les</span><span class="w"> </span><span class="nx">singletons</span>
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">            </span><span class="nx">factory</span><span class="p">.</span><span class="nx">Dispose</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>             &#39; يتم تدمير الكائنات الفردية
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>            factory.Dispose()
 </code></pre></div>
-<p>يؤدي إلى تدمير العناصر الفردية التي أنشأتها <bdi dir="ltr" class="odt-ltr-term">Spring.</bdi> وهذا يؤدي إلى قيام كل منها بتنفيذ طريقة [<bdi dir="ltr" class="odt-ltr-term">close</bdi>] الخاصة بها لأننا كتبنا، في ملف التكوين، لكل منها: &quot;<bdi dir="ltr" class="odt-ltr-term">destroy-method</bdi>=<bdi dir="ltr" class="odt-ltr-term">close</bdi>&quot;. وهذا ما تشير إليه الشاشات:</p>
+<p>إتلاف الكائنات الفردية التي أنشأها <bdi dir="ltr" class="odt-ltr-term">Spring.</bdi> ويؤدي ذلك إلى تنفيذ طريقة كل منها [<bdi dir="ltr" class="odt-ltr-term">close</bdi>] لأننا كتبنا، في ملف التكوين، لكل منها: &quot;<bdi dir="ltr" class="odt-ltr-term">destroy-method</bdi>=<bdi dir="ltr" class="odt-ltr-term">close</bdi>&quot;. وهذا ما تشير إليه العروض التالية:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>destroy personne [Simon,40]
 <a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>destroy personne [Brigitte,20]
 </code></pre></div>
-<p>الآن بعد أن غطينا أساسيات تكوين <bdi dir="ltr" class="odt-ltr-term">Spring</bdi>، سنتمكن من المضي قدماً في شرحنا بوتيرة أسرع قليلاً.</p>
+<p>وبما أننا اكتسبنا الآن أساسيات تكوين <bdi dir="ltr" class="odt-ltr-term">Spring</bdi>، فسنكون من الآن فصاعدًا أسرع قليلاً في شرحنا.</p>
 <h2 id="52-2">5.2. <span style="color: #4f81bd">المثال 2</span></h2>
-<p>لننظر إلى فئة [<bdi dir="ltr" class="odt-ltr-term">Car</bdi>] الجديدة التالية:</p>
+<p>لننظر إلى الفئة الجديدة التالية [<bdi dir="ltr" class="odt-ltr-term">Voiture</bdi>]:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">Imports</span><span class="w"> </span><span class="nn">istia.st.springioc.demos</span>
 <a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>
 <a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="k">Namespace</span><span class="w"> </span><span class="nn">istia.st.springioc.demos</span>
 <a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>
 <a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="w">    </span><span class="k">Public</span><span class="w"> </span><span class="k">Class</span><span class="w"> </span><span class="nc">Voiture</span>
-<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="w">        </span><span class="c">&#39; private fields</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="w">         </span><span class="c">&#39; الحقول الخاصة</span>
 <a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="w">        </span><span class="k">Private</span><span class="w"> </span><span class="n">_marque</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="kt">String</span>
 <a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="w">        </span><span class="k">Private</span><span class="w"> </span><span class="n">_type</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="kt">String</span>
 <a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="w">        </span><span class="k">Private</span><span class="w"> </span><span class="n">_propriétaire</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="n">Personne</span>
 <a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>
-<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="w">        </span><span class="c">&#39; public property</span>
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="w">         </span><span class="c">&#39; الخصائص العامة</span>
 <a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="w">        </span><span class="k">Public</span><span class="w"> </span><span class="k">Property</span><span class="w"> </span><span class="nf">marque</span><span class="p">()</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="kt">String</span>
 <a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a><span class="w">            </span><span class="k">Get</span>
 <a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a><span class="w">                </span><span class="k">Return</span><span class="w"> </span><span class="n">_marque</span>
@@ -881,14 +880,14 @@
 <a id="__codelineno-13-36" name="__codelineno-13-36" href="#__codelineno-13-36"></a><span class="w">            </span><span class="k">End</span><span class="w"> </span><span class="k">Set</span>
 <a id="__codelineno-13-37" name="__codelineno-13-37" href="#__codelineno-13-37"></a><span class="w">        </span><span class="k">End</span><span class="w"> </span><span class="k">Property</span>
 <a id="__codelineno-13-38" name="__codelineno-13-38" href="#__codelineno-13-38"></a>
-<a id="__codelineno-13-39" name="__codelineno-13-39" href="#__codelineno-13-39"></a><span class="w">        </span><span class="c">&#39; default builder</span>
+<a id="__codelineno-13-39" name="__codelineno-13-39" href="#__codelineno-13-39"></a><span class="w">         </span><span class="c">&#39; منشئ افتراضي</span>
 <a id="__codelineno-13-40" name="__codelineno-13-40" href="#__codelineno-13-40"></a><span class="w">        </span><span class="k">Public</span><span class="w"> </span><span class="k">Sub</span><span class="w"> </span><span class="nf">New</span><span class="p">()</span>
 <a id="__codelineno-13-41" name="__codelineno-13-41" href="#__codelineno-13-41"></a>
 <a id="__codelineno-13-42" name="__codelineno-13-42" href="#__codelineno-13-42"></a><span class="w">        </span><span class="k">End</span><span class="w"> </span><span class="k">Sub</span>
 <a id="__codelineno-13-43" name="__codelineno-13-43" href="#__codelineno-13-43"></a>
-<a id="__codelineno-13-44" name="__codelineno-13-44" href="#__codelineno-13-44"></a><span class="w">        </span><span class="c">&#39; three-parameter constructor</span>
+<a id="__codelineno-13-44" name="__codelineno-13-44" href="#__codelineno-13-44"></a><span class="w">         </span><span class="c">&#39; منشئ بثلاثة معلمات</span>
 <a id="__codelineno-13-45" name="__codelineno-13-45" href="#__codelineno-13-45"></a><span class="w">        </span><span class="k">Public</span><span class="w"> </span><span class="k">Sub</span><span class="w"> </span><span class="nf">New</span><span class="p">(</span><span class="k">ByVal</span><span class="w"> </span><span class="n">marque</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="k">ByVal</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="k">ByVal</span><span class="w"> </span><span class="n">propriétaire</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="n">Personne</span><span class="p">)</span>
-<a id="__codelineno-13-46" name="__codelineno-13-46" href="#__codelineno-13-46"></a><span class="w">            </span><span class="c">&#39; initialize private fields via their associated properties</span>
+<a id="__codelineno-13-46" name="__codelineno-13-46" href="#__codelineno-13-46"></a><span class="w">             </span><span class="c">&#39; يتم تهيئة الحقول الخاصة عبر خصائصها المرتبطة</span>
 <a id="__codelineno-13-47" name="__codelineno-13-47" href="#__codelineno-13-47"></a><span class="w">            </span><span class="k">With</span><span class="w"> </span><span class="k">Me</span>
 <a id="__codelineno-13-48" name="__codelineno-13-48" href="#__codelineno-13-48"></a><span class="w">                </span><span class="p">.</span><span class="n">marque</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">marque</span>
 <a id="__codelineno-13-49" name="__codelineno-13-49" href="#__codelineno-13-49"></a><span class="w">                </span><span class="p">.</span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">type</span>
@@ -896,12 +895,12 @@
 <a id="__codelineno-13-51" name="__codelineno-13-51" href="#__codelineno-13-51"></a><span class="w">            </span><span class="k">End</span><span class="w"> </span><span class="k">With</span>
 <a id="__codelineno-13-52" name="__codelineno-13-52" href="#__codelineno-13-52"></a><span class="w">        </span><span class="k">End</span><span class="w"> </span><span class="k">Sub</span>
 <a id="__codelineno-13-53" name="__codelineno-13-53" href="#__codelineno-13-53"></a>
-<a id="__codelineno-13-54" name="__codelineno-13-54" href="#__codelineno-13-54"></a><span class="w">        </span><span class="c">&#39; car object identity string</span>
+<a id="__codelineno-13-54" name="__codelineno-13-54" href="#__codelineno-13-54"></a><span class="w">         </span><span class="c">&#39; سلسلة تعريف كائن «السيارة»</span>
 <a id="__codelineno-13-55" name="__codelineno-13-55" href="#__codelineno-13-55"></a><span class="w">        </span><span class="k">Public</span><span class="w"> </span><span class="k">Overrides</span><span class="w"> </span><span class="k">Function</span><span class="w"> </span><span class="nf">tostring</span><span class="p">()</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="kt">String</span>
 <a id="__codelineno-13-56" name="__codelineno-13-56" href="#__codelineno-13-56"></a><span class="w">            </span><span class="k">Return</span><span class="w"> </span><span class="kt">String</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="s">&quot;[{0},{1},{2}]&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">marque</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="p">,</span><span class="w"> </span><span class="n">propriétaire</span><span class="p">.</span><span class="n">ToString</span><span class="p">)</span>
 <a id="__codelineno-13-57" name="__codelineno-13-57" href="#__codelineno-13-57"></a><span class="w">        </span><span class="k">End</span><span class="w"> </span><span class="k">Function</span>
 <a id="__codelineno-13-58" name="__codelineno-13-58" href="#__codelineno-13-58"></a>
-<a id="__codelineno-13-59" name="__codelineno-13-59" href="#__codelineno-13-59"></a><span class="w">        </span><span class="c">&#39; init-destroy methods</span>
+<a id="__codelineno-13-59" name="__codelineno-13-59" href="#__codelineno-13-59"></a><span class="w">         </span><span class="c">&#39; طريقتا init وdestroy</span>
 <a id="__codelineno-13-60" name="__codelineno-13-60" href="#__codelineno-13-60"></a><span class="w">        </span><span class="k">Public</span><span class="w"> </span><span class="k">Sub</span><span class="w"> </span><span class="nf">init</span><span class="p">()</span>
 <a id="__codelineno-13-61" name="__codelineno-13-61" href="#__codelineno-13-61"></a><span class="w">            </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;init voiture {0}&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">Me</span><span class="p">.</span><span class="n">ToString</span><span class="p">)</span>
 <a id="__codelineno-13-62" name="__codelineno-13-62" href="#__codelineno-13-62"></a><span class="w">        </span><span class="k">End</span><span class="w"> </span><span class="k">Sub</span>
@@ -915,16 +914,16 @@
 </code></pre></div>
 <p>تحتوي الفئة على:</p>
 <ul>
-<li>ثلاثة حقول خاصة: <strong>_type</strong> و<strong>_make و_owner</strong>. يمكن تهيئة هذه الحقول وقراءتها عبر الخصائص العامة. كما يمكن تهيئتها باستخدام منشئ <strong><bdi dir="ltr" class="odt-ltr-term">Car</bdi>(<bdi dir="ltr" class="odt-ltr-term">String, String, Person</bdi>)</strong>. تحتوي الفئة أيضًا على منشئ بدون حجج يسمح لك أولاً بإنشاء كائن [<bdi dir="ltr" class="odt-ltr-term">Car</bdi>] غير مهيأ ثم تهيئته عبر خصائصه العامة.</li>
-<li>طريقة <strong><bdi dir="ltr" class="odt-ltr-term">toString</bdi></strong> لاسترداد قيمة كائن [<bdi dir="ltr" class="odt-ltr-term">Car</bdi>] كسلسلة</li>
-<li>طريقة <strong><bdi dir="ltr" class="odt-ltr-term">init</bdi></strong> التي سيستدعيها <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> فور إنشاء الكائن، وطريقة <strong><bdi dir="ltr" class="odt-ltr-term">destroy</bdi></strong> التي سيتم استدعاؤها عند إزالة الكائن</li>
+<li>ثلاثة حقول خاصة هي _type و _marque و _propriétaire. يمكن تهيئة هذه الحقول وقراءتها من خلال الخصائص العامة. كما يمكن تهيئتها باستخدام منشئ <strong><bdi dir="ltr" class="odt-ltr-term">Voiture</bdi>(<bdi dir="ltr" class="odt-ltr-term">String, String, Personne</bdi>)</strong>. تحتوي الفئة أيضًا على مُنشئ بدون معلمات يسمح أولاً بإنشاء كائن [<bdi dir="ltr" class="odt-ltr-term">Voiture</bdi>] غير مُهيأ، ثم تهيئته لاحقًا عبر خصائصه العامة.</li>
+<li>طريقة <strong><bdi dir="ltr" class="odt-ltr-term">toString</bdi></strong> لاسترداد قيمة الكائن [<bdi dir="ltr" class="odt-ltr-term">Voiture</bdi>] في شكل سلسلة أحرف</li>
+<li>طريقة <strong><bdi dir="ltr" class="odt-ltr-term">init</bdi></strong> التي سيستدعيها <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> مباشرة بعد إنشاء الكائن، وطريقة <strong><bdi dir="ltr" class="odt-ltr-term">destroy</bdi></strong> التي سيستدعيها عند تدمير الكائن</li>
 </ul>
-<p>لإنشاء كائنات من النوع [<bdi dir="ltr" class="odt-ltr-term">Car</bdi>]، سنستخدم ملف <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> [<strong><bdi dir="ltr" class="odt-ltr-term">spring-config-2.xml</bdi></strong>] التالي:</p>
+<p>لإنشاء كائنات من النوع [<bdi dir="ltr" class="odt-ltr-term">Voiture</bdi>]، سنستخدم ملف <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> [<bdi dir="ltr" class="odt-ltr-term">spring-config-2.xml</bdi>] التالي:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;iso-8859-1&quot; ?&gt;</span>
 <a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="cp">&lt;!DOCTYPE objects PUBLIC &quot;-//SPRING//DTD OBJECT//EN&quot;</span>
 <a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="cp">&quot;http://www.springframework.net/dtd/spring-objects.dtd&quot;&gt;</span>
 <a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="nt">&lt;objects&gt;</span>
-<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">     </span><span class="cm">&lt;!-- people --&gt;</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">     </span><span class="cm">&lt;!-- الأشخاص --&gt;</span>
 <a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="w">    </span><span class="nt">&lt;object</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;personne1&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;istia.st.springioc.demos.Personne, demo1&quot;</span><span class="w"> </span><span class="na">init-method=</span><span class="s">&quot;init&quot;</span>
 <a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="w">        </span><span class="na">destroy-method=</span><span class="s">&quot;close&quot;</span><span class="nt">&gt;</span>
 <a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="w">        </span><span class="nt">&lt;property</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;nom&quot;</span><span class="nt">&gt;</span>
@@ -943,7 +942,7 @@
 <a id="__codelineno-14-21" name="__codelineno-14-21" href="#__codelineno-14-21"></a><span class="w">            </span><span class="nt">&lt;value&gt;</span>20<span class="nt">&lt;/value&gt;</span>
 <a id="__codelineno-14-22" name="__codelineno-14-22" href="#__codelineno-14-22"></a><span class="w">        </span><span class="nt">&lt;/property&gt;</span>
 <a id="__codelineno-14-23" name="__codelineno-14-23" href="#__codelineno-14-23"></a><span class="w">    </span><span class="nt">&lt;/object&gt;</span>
-<a id="__codelineno-14-24" name="__codelineno-14-24" href="#__codelineno-14-24"></a><span class="w">     </span><span class="cm">&lt;!-- a car --&gt;</span>
+<a id="__codelineno-14-24" name="__codelineno-14-24" href="#__codelineno-14-24"></a><span class="w">     </span><span class="cm">&lt;!-- سيارة --&gt;</span>
 <a id="__codelineno-14-25" name="__codelineno-14-25" href="#__codelineno-14-25"></a><span class="w">    </span><span class="nt">&lt;object</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;voiture1&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;istia.st.springioc.demos.Voiture, demo1&quot;</span><span class="w"> </span><span class="na">init-method=</span><span class="s">&quot;init&quot;</span>
 <a id="__codelineno-14-26" name="__codelineno-14-26" href="#__codelineno-14-26"></a><span class="w">        </span><span class="na">destroy-method=</span><span class="s">&quot;destroy&quot;</span><span class="nt">&gt;</span>
 <a id="__codelineno-14-27" name="__codelineno-14-27" href="#__codelineno-14-27"></a><span class="w">        </span><span class="nt">&lt;constructor-arg</span><span class="w"> </span><span class="na">index=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>
@@ -958,7 +957,7 @@
 <a id="__codelineno-14-36" name="__codelineno-14-36" href="#__codelineno-14-36"></a><span class="w">    </span><span class="nt">&lt;/object&gt;</span>
 <a id="__codelineno-14-37" name="__codelineno-14-37" href="#__codelineno-14-37"></a><span class="nt">&lt;/objects&gt;</span>
 </code></pre></div>
-<p>يضيف هذا الملف كائنًا بالمفتاح &quot;<bdi dir="ltr" class="odt-ltr-term">car1</bdi>&quot; من النوع [<bdi dir="ltr" class="odt-ltr-term">Car</bdi>] إلى التعريفات السابقة. لتهيئة هذا الكائن، كان بإمكاننا كتابة:</p>
+<p>يضيف هذا الملف إلى التعريفات السابقة كائن مفتاح &quot;<bdi dir="ltr" class="odt-ltr-term">voiture1</bdi>&quot; من النوع [<bdi dir="ltr" class="odt-ltr-term">Voiture</bdi>]. لتهيئة هذا الكائن، كان من الممكن كتابة:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="w">    </span><span class="nt">&lt;object</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;voiture1&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;istia.st.springioc.demos.Voiture, demo1&quot;</span><span class="w"> </span><span class="na">init-method=</span><span class="s">&quot;init&quot;</span>
 <a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">        </span><span class="na">destroy-method=</span><span class="s">&quot;destroy&quot;</span><span class="nt">&gt;</span>
 <a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">        </span><span class="nt">&lt;constructor-arg</span><span class="w"> </span><span class="na">index=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>
@@ -972,8 +971,8 @@
 <a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="w">        </span><span class="nt">&lt;/constructor-arg&gt;</span>
 <a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="w">    </span><span class="nt">&lt;/object&gt;</span>
 </code></pre></div>
-<p>بدلاً من اختيار الطريقة التي تم عرضها سابقًا، اخترنا هنا استخدام منشئ الفئة <strong><bdi dir="ltr" class="odt-ltr-term">Car</bdi>(<bdi dir="ltr" class="odt-ltr-term">String, String, Person</bdi>)</strong>. بالإضافة إلى ذلك، يحدد العنصر الفردي [<bdi dir="ltr" class="odt-ltr-term">car1</bdi>] الطريقة التي سيتم استدعاؤها أثناء الإنشاء الأولي للكائن [<bdi dir="ltr" class="odt-ltr-term">init-method</bdi>] والطريقة التي سيتم استدعاؤها أثناء تدمير الكائن [<bdi dir="ltr" class="odt-ltr-term">destroy-method</bdi>].</p>
-<p>لإجراء اختباراتنا، سنستخدم فئة اختبار <bdi dir="ltr" class="odt-ltr-term">NUnit</bdi> التالية [<bdi dir="ltr" class="odt-ltr-term">NunitTestSpringIocDemo2</bdi>]:</p>
+<p>بدلاً من اختيار هذه الطريقة التي سبق عرضها، اخترنا هنا استخدام منشئ <strong><bdi dir="ltr" class="odt-ltr-term">Voiture</bdi>(<bdi dir="ltr" class="odt-ltr-term">String, String, Personne</bdi>)</strong> الخاص بالفئة. من ناحية أخرى، يحدد العنصر الفردي [<bdi dir="ltr" class="odt-ltr-term">voiture1</bdi>] الطريقة التي يجب استدعاؤها عند الإنشاء الأولي للكائن [<bdi dir="ltr" class="odt-ltr-term">init-method</bdi>] والطريقة التي يجب استدعاؤها عند تدمير الكائن [<bdi dir="ltr" class="odt-ltr-term">destroy-method</bdi>].</p>
+<p>لإجراء اختباراتنا، سنستخدم فئة الاختبار <bdi dir="ltr" class="odt-ltr-term">NUnit</bdi> [<bdi dir="ltr" class="odt-ltr-term">NunitTestSpringIocDemo2</bdi>] التالية:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">Imports</span><span class="w"> </span><span class="nn">System</span>
 <a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="k">Imports</span><span class="w"> </span><span class="nn">Spring.Objects.Factory.Xml</span>
 <a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="k">Imports</span><span class="w"> </span><span class="nn">System.IO</span>
@@ -984,30 +983,30 @@
 <a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>
 <a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="w">    </span><span class="o">&lt;</span><span class="n">TestFixture</span><span class="p">()</span><span class="o">&gt;</span><span class="w"> </span>_
 <a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="w">    </span><span class="k">Public</span><span class="w"> </span><span class="k">Class</span><span class="w"> </span><span class="nc">NunitTestSpringIocDemo2</span>
-<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="w">        </span><span class="c">&#39; the singletons factory</span>
+<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="w">         </span><span class="c">&#39; مصنع العناصر الفردية</span>
 <a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a><span class="w">        </span><span class="k">Private</span><span class="w"> </span><span class="n">factory</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="n">XmlObjectFactory</span>
 <a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a>
 <a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a><span class="w">        </span><span class="o">&lt;</span><span class="n">SetUp</span><span class="p">()</span><span class="o">&gt;</span><span class="w"> </span>_
 <a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a><span class="w">        </span><span class="k">Public</span><span class="w"> </span><span class="k">Sub</span><span class="w"> </span><span class="nf">init</span><span class="p">()</span>
-<a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a><span class="w">            </span><span class="c">&#39; create a factory instance</span>
+<a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a><span class="w">             </span><span class="c">&#39; يتم إنشاء مثيل لمصنع</span>
 <a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a><span class="w">            </span><span class="n">factory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">New</span><span class="w"> </span><span class="n">XmlObjectFactory</span><span class="p">(</span><span class="k">New</span><span class="w"> </span><span class="n">FileStream</span><span class="p">(</span><span class="s">&quot;spring-config-2.xml&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">FileMode</span><span class="p">.</span><span class="n">Open</span><span class="p">))</span>
-<a id="__codelineno-16-18" name="__codelineno-16-18" href="#__codelineno-16-18"></a><span class="w">            </span><span class="c">&#39; log</span>
+<a id="__codelineno-16-18" name="__codelineno-16-18" href="#__codelineno-16-18"></a><span class="w">             </span><span class="c">&#39; السجل</span>
 <a id="__codelineno-16-19" name="__codelineno-16-19" href="#__codelineno-16-19"></a><span class="w">            </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;setup test&quot;</span><span class="p">)</span>
 <a id="__codelineno-16-20" name="__codelineno-16-20" href="#__codelineno-16-20"></a><span class="w">        </span><span class="k">End</span><span class="w"> </span><span class="k">Sub</span>
 <a id="__codelineno-16-21" name="__codelineno-16-21" href="#__codelineno-16-21"></a>
 <a id="__codelineno-16-22" name="__codelineno-16-22" href="#__codelineno-16-22"></a><span class="w">        </span><span class="o">&lt;</span><span class="n">TearDown</span><span class="p">()</span><span class="o">&gt;</span><span class="w"> </span>_
 <a id="__codelineno-16-23" name="__codelineno-16-23" href="#__codelineno-16-23"></a><span class="w">    </span><span class="k">Public</span><span class="w"> </span><span class="k">Sub</span><span class="w"> </span><span class="nf">destroy</span><span class="p">()</span>
-<a id="__codelineno-16-24" name="__codelineno-16-24" href="#__codelineno-16-24"></a><span class="w">            </span><span class="c">&#39; we destroy the singletons</span>
+<a id="__codelineno-16-24" name="__codelineno-16-24" href="#__codelineno-16-24"></a><span class="w">             </span><span class="c">&#39; يتم تدمير العناصر الفردية</span>
 <a id="__codelineno-16-25" name="__codelineno-16-25" href="#__codelineno-16-25"></a><span class="w">            </span><span class="n">factory</span><span class="p">.</span><span class="n">Dispose</span><span class="p">()</span>
-<a id="__codelineno-16-26" name="__codelineno-16-26" href="#__codelineno-16-26"></a><span class="w">            </span><span class="c">&#39; we free the factory</span>
+<a id="__codelineno-16-26" name="__codelineno-16-26" href="#__codelineno-16-26"></a><span class="w">             </span><span class="c">&#39; تحرير المصنع</span>
 <a id="__codelineno-16-27" name="__codelineno-16-27" href="#__codelineno-16-27"></a><span class="w">            </span><span class="n">factory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">Nothing</span>
-<a id="__codelineno-16-28" name="__codelineno-16-28" href="#__codelineno-16-28"></a><span class="w">            </span><span class="c">&#39; follow-up</span>
+<a id="__codelineno-16-28" name="__codelineno-16-28" href="#__codelineno-16-28"></a><span class="w">             </span><span class="c">&#39; المتابعة</span>
 <a id="__codelineno-16-29" name="__codelineno-16-29" href="#__codelineno-16-29"></a><span class="w">            </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;teardown test&quot;</span><span class="p">)</span>
 <a id="__codelineno-16-30" name="__codelineno-16-30" href="#__codelineno-16-30"></a><span class="w">        </span><span class="k">End</span><span class="w"> </span><span class="k">Sub</span>
 <a id="__codelineno-16-31" name="__codelineno-16-31" href="#__codelineno-16-31"></a>
 <a id="__codelineno-16-32" name="__codelineno-16-32" href="#__codelineno-16-32"></a><span class="w">        </span><span class="o">&lt;</span><span class="n">Test</span><span class="p">()</span><span class="o">&gt;</span><span class="w"> </span>_
 <a id="__codelineno-16-33" name="__codelineno-16-33" href="#__codelineno-16-33"></a><span class="w">        </span><span class="k">Public</span><span class="w"> </span><span class="k">Sub</span><span class="w"> </span><span class="nf">demo2</span><span class="p">()</span>
-<a id="__codelineno-16-34" name="__codelineno-16-34" href="#__codelineno-16-34"></a><span class="w">            </span><span class="c">&#39; singleton retrieval [car1]]</span>
+<a id="__codelineno-16-34" name="__codelineno-16-34" href="#__codelineno-16-34"></a><span class="w">             </span><span class="c">&#39; استرداد الكائن الفردي [voiture1]</span>
 <a id="__codelineno-16-35" name="__codelineno-16-35" href="#__codelineno-16-35"></a><span class="w">            </span><span class="k">Dim</span><span class="w"> </span><span class="n">voiture1</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="n">Voiture</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">CType</span><span class="p">(</span><span class="n">factory</span><span class="p">.</span><span class="n">GetObject</span><span class="p">(</span><span class="s">&quot;voiture1&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">Voiture</span><span class="p">)</span>
 <a id="__codelineno-16-36" name="__codelineno-16-36" href="#__codelineno-16-36"></a><span class="w">            </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Voiture1=[{0}]&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">voiture1</span><span class="p">)</span>
 <a id="__codelineno-16-37" name="__codelineno-16-37" href="#__codelineno-16-37"></a><span class="w">        </span><span class="k">End</span><span class="w"> </span><span class="k">Sub</span>
@@ -1017,14 +1016,14 @@
 </code></pre></div>
 <p><strong>تعليقات</strong>:</p>
 <ul>
-<li>تظل طرق السمات &lt;<bdi dir="ltr" class="odt-ltr-term">Setup</bdi>()&gt; و &lt;<bdi dir="ltr" class="odt-ltr-term">TearDown</bdi>()&gt; دون تغيير.</li>
-<li>تسترد الطريقة [<bdi dir="ltr" class="odt-ltr-term">demo2</bdi>] مرجعًا إلى العنصر الفردي [<bdi dir="ltr" class="odt-ltr-term">car1</bdi>] وتعرضه.</li>
+<li>تظل طرق السمات &lt;<bdi dir="ltr" class="odt-ltr-term">Setup</bdi>()&gt; و&lt;<bdi dir="ltr" class="odt-ltr-term">TearDown</bdi>()&gt; دون تغيير.</li>
+<li>تسترد الطريقة [<bdi dir="ltr" class="odt-ltr-term">demo2</bdi>] مرجعًا إلى العنصر الفردي [<bdi dir="ltr" class="odt-ltr-term">voiture1</bdi>] وتعرضه.</li>
 </ul>
-<p>تظل بنية مشروع <bdi dir="ltr" class="odt-ltr-term">Visual Studio</bdi> كما كانت من قبل. تمت إضافة فئتين جديدتين فقط، إلى جانب ملف تكوين <bdi dir="ltr" class="odt-ltr-term">Spring:</bdi></p>
-<p><img src="images/10000000000001240000010BFB8B3103.png" width="234" height="214" style="width:6.181cm;height:5.652cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001240000010BFB8B3103.png" /></p>
-<p>يؤدي تشغيل اختبار <bdi dir="ltr" class="odt-ltr-term">NUnit</bdi> إلى الحصول على النتائج التالية:</p>
-<p><img src="images/10000000000002DA000000F1AA779A3B.png" width="620" height="205" style="width:16.401cm;height:5.415cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002DA000000F1AA779A3B.png" /></p>
-<p>دعونا نعلق على مخرجات الشاشة:</p>
+<p>تظل بنية مشروع <bdi dir="ltr" class="odt-ltr-term">Visual Studio</bdi> كما كانت من قبل. لم تظهر سوى فئتين جديدتين بالإضافة إلى ملف تكوين <bdi dir="ltr" class="odt-ltr-term">Spring:</bdi></p>
+<p><img src="images/10000000000001240000010BFB8B3103.png" width="234" height="214" style="width:6.181cm;height:5.65cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001240000010BFB8B3103.png" /></p>
+<p>يُظهر تنفيذ الاختبار <bdi dir="ltr" class="odt-ltr-term">NUnit</bdi> النتائج التالية:</p>
+<p><img src="images/10000000000002DA000000F1AA779A3B.png" width="620" height="205" style="width:16.401cm;height:5.413cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002DA000000F1AA779A3B.png" /></p>
+<p>دعونا نعلق على ما يظهر على الشاشة:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1">1</a></span>
 <span class="normal"><a href="#__codelineno-17-2">2</a></span>
 <span class="normal"><a href="#__codelineno-17-3">3</a></span>
@@ -1041,26 +1040,26 @@
 <a id="__codelineno-17-7" name="__codelineno-17-7"></a>destroy personne [Brigitte,20]
 <a id="__codelineno-17-8" name="__codelineno-17-8"></a>teardown test
 </code></pre></div></td></tr></table></div>
-<p><strong>تعليقات</strong>:</p>
+<p><strong>التعليقات</strong>:</p>
 <ul>
 <li>السطر 2: يتم تنفيذ طريقة السمة [<bdi dir="ltr" class="odt-ltr-term">Setup</bdi>] قبل كل اختبار، وهنا [<bdi dir="ltr" class="odt-ltr-term">demo</bdi>]</li>
-<li>السطر 3: يبدأ <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> في إنشاء الكائن الفردي [<bdi dir="ltr" class="odt-ltr-term">car1</bdi>]. هذا الكائن الفردي يعتمد على الكائن الفردي [<bdi dir="ltr" class="odt-ltr-term">person2</bdi>]، الذي لا يوجد بعد. لذلك يتم إنشاء هذا الأخير وتنفيذ طريقة [<bdi dir="ltr" class="odt-ltr-term">init</bdi>] الخاصة به.</li>
-<li>السطر 4: يمكن الآن إنشاء الكائن الفردي [<bdi dir="ltr" class="odt-ltr-term">car1</bdi>]. ثم يتم تنفيذ طريقة [<bdi dir="ltr" class="odt-ltr-term">init</bdi>] الخاصة به.</li>
-<li>السطر 5: تعرض طريقة [<bdi dir="ltr" class="odt-ltr-term">demo2</bdi>] قيمة الكائن الفردي [<bdi dir="ltr" class="odt-ltr-term">car1</bdi>]</li>
-<li>الأسطر 6-8: يتم تنفيذ طريقة [<bdi dir="ltr" class="odt-ltr-term">TearDown</bdi>] الخاصة بالاختبار. يتم تدمير الكائنات الفردية، مما يؤدي إلى تنفيذ طرق [<bdi dir="ltr" class="odt-ltr-term">destroy</bdi>] الخاصة بها</li>
+<li>السطر 3: يبدأ <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> في إنشاء الكائن الفردي [<bdi dir="ltr" class="odt-ltr-term">voiture1</bdi>]. وهذا الكائن يعتمد على الكائن الفردي [<bdi dir="ltr" class="odt-ltr-term">personne2</bdi>] الذي لا وجود له. لذا يتم إنشاء هذا الأخير وتنفيذ طريقة [<bdi dir="ltr" class="odt-ltr-term">init</bdi>] الخاصة به.</li>
+<li>السطر 4: يمكن الآن إنشاء الكائن الفردي [<bdi dir="ltr" class="odt-ltr-term">voiture1</bdi>]. ثم يتم تنفيذ طريقة [<bdi dir="ltr" class="odt-ltr-term">init</bdi>] الخاصة به.</li>
+<li>السطر 5: تعرض الطريقة [<bdi dir="ltr" class="odt-ltr-term">demo2</bdi>] قيمة الكائن الفردي [<bdi dir="ltr" class="odt-ltr-term">voiture1</bdi>]</li>
+<li>الأسطر 6-8: يتم تنفيذ الطريقة [<bdi dir="ltr" class="odt-ltr-term">TearDown</bdi>] الخاصة بالاختبار. يتم تدمير الكائنات الفردية، مما يؤدي إلى تنفيذ طرقها [<bdi dir="ltr" class="odt-ltr-term">destroy</bdi>]</li>
 </ul>
 <h2 id="53-3">5.3. <span style="color: #4f81bd">المثال 3</span></h2>
-<p>نقدم الفئة الجديدة التالية [<bdi dir="ltr" class="odt-ltr-term">PersonGroup</bdi>]:</p>
+<p>نقوم بإدخال الفئة الجديدة [<bdi dir="ltr" class="odt-ltr-term">GroupePersonnes</bdi>] التالية:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">Imports</span><span class="w"> </span><span class="nn">istia.st.springioc.demos</span>
 <a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>
 <a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="k">Namespace</span><span class="w"> </span><span class="nn">istia.st.springioc.demos</span>
 <a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>
 <a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="w">    </span><span class="k">Public</span><span class="w"> </span><span class="k">Class</span><span class="w"> </span><span class="nc">GroupePersonnes</span>
-<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="w">        </span><span class="c">&#39; private fields</span>
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="w">         </span><span class="c">&#39; الحقول الخاصة</span>
 <a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="w">        </span><span class="k">Private</span><span class="w"> </span><span class="n">_membres</span><span class="p">()</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="n">Personne</span>
 <a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="w">        </span><span class="k">Private</span><span class="w"> </span><span class="n">_groupesDeTravail</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="n">Hashtable</span>
 <a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>
-<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a><span class="w">        </span><span class="c">&#39; public property</span>
+<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a><span class="w">         </span><span class="c">&#39; الخصائص العامة</span>
 <a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a><span class="w">        </span><span class="k">Public</span><span class="w"> </span><span class="k">Property</span><span class="w"> </span><span class="nf">membres</span><span class="p">()</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="n">Personne</span><span class="p">()</span>
 <a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a><span class="w">            </span><span class="k">Get</span>
 <a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a><span class="w">                </span><span class="k">Return</span><span class="w"> </span><span class="n">_membres</span>
@@ -1079,32 +1078,32 @@
 <a id="__codelineno-18-26" name="__codelineno-18-26" href="#__codelineno-18-26"></a><span class="w">            </span><span class="k">End</span><span class="w"> </span><span class="k">Set</span>
 <a id="__codelineno-18-27" name="__codelineno-18-27" href="#__codelineno-18-27"></a><span class="w">        </span><span class="k">End</span><span class="w"> </span><span class="k">Property</span>
 <a id="__codelineno-18-28" name="__codelineno-18-28" href="#__codelineno-18-28"></a>
-<a id="__codelineno-18-29" name="__codelineno-18-29" href="#__codelineno-18-29"></a><span class="w">        </span><span class="c">&#39; default builder</span>
+<a id="__codelineno-18-29" name="__codelineno-18-29" href="#__codelineno-18-29"></a><span class="w">         </span><span class="c">&#39; منشئ افتراضي</span>
 <a id="__codelineno-18-30" name="__codelineno-18-30" href="#__codelineno-18-30"></a><span class="w">        </span><span class="k">Public</span><span class="w"> </span><span class="k">Sub</span><span class="w"> </span><span class="nf">New</span><span class="p">()</span>
 <a id="__codelineno-18-31" name="__codelineno-18-31" href="#__codelineno-18-31"></a>
 <a id="__codelineno-18-32" name="__codelineno-18-32" href="#__codelineno-18-32"></a><span class="w">        </span><span class="k">End</span><span class="w"> </span><span class="k">Sub</span>
 <a id="__codelineno-18-33" name="__codelineno-18-33" href="#__codelineno-18-33"></a>
-<a id="__codelineno-18-34" name="__codelineno-18-34" href="#__codelineno-18-34"></a><span class="w">        </span><span class="c">&#39; object identity string GroupeDePersonnes</span>
+<a id="__codelineno-18-34" name="__codelineno-18-34" href="#__codelineno-18-34"></a><span class="w">         </span><span class="c">&#39; سلسلة هوية الكائن GroupeDePersonnes</span>
 <a id="__codelineno-18-35" name="__codelineno-18-35" href="#__codelineno-18-35"></a><span class="w">        </span><span class="k">Public</span><span class="w"> </span><span class="k">Overrides</span><span class="w"> </span><span class="k">Function</span><span class="w"> </span><span class="nf">tostring</span><span class="p">()</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="kt">String</span>
-<a id="__codelineno-18-36" name="__codelineno-18-36" href="#__codelineno-18-36"></a><span class="w">            </span><span class="c">&#39; browse the list of group members</span>
+<a id="__codelineno-18-36" name="__codelineno-18-36" href="#__codelineno-18-36"></a><span class="w">             </span><span class="c">&#39; يتم تصفح قائمة أعضاء المجموعة</span>
 <a id="__codelineno-18-37" name="__codelineno-18-37" href="#__codelineno-18-37"></a><span class="w">            </span><span class="k">Dim</span><span class="w"> </span><span class="n">identité</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;[membres=(&quot;</span>
 <a id="__codelineno-18-38" name="__codelineno-18-38" href="#__codelineno-18-38"></a><span class="w">            </span><span class="k">Dim</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="kt">Integer</span>
 <a id="__codelineno-18-39" name="__codelineno-18-39" href="#__codelineno-18-39"></a><span class="w">            </span><span class="k">For</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">To</span><span class="w"> </span><span class="n">membres</span><span class="p">.</span><span class="n">Length</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span>
 <a id="__codelineno-18-40" name="__codelineno-18-40" href="#__codelineno-18-40"></a><span class="w">                </span><span class="n">identité</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">membres</span><span class="p">(</span><span class="n">i</span><span class="p">).</span><span class="n">ToString</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;,&quot;</span>
 <a id="__codelineno-18-41" name="__codelineno-18-41" href="#__codelineno-18-41"></a><span class="w">            </span><span class="k">Next</span>
 <a id="__codelineno-18-42" name="__codelineno-18-42" href="#__codelineno-18-42"></a><span class="w">            </span><span class="n">identité</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">membres</span><span class="p">(</span><span class="n">i</span><span class="p">).</span><span class="n">ToString</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;), groupes de travail=(&quot;</span>
-<a id="__codelineno-18-43" name="__codelineno-18-43" href="#__codelineno-18-43"></a><span class="w">            </span><span class="c">&#39; browse the workgroup dictionary</span>
+<a id="__codelineno-18-43" name="__codelineno-18-43" href="#__codelineno-18-43"></a><span class="w">             </span><span class="c">&#39; يتم تصفح قاموس مجموعات العمل</span>
 <a id="__codelineno-18-44" name="__codelineno-18-44" href="#__codelineno-18-44"></a><span class="w">            </span><span class="k">Dim</span><span class="w"> </span><span class="n">clés</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="n">IEnumerator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">groupesDeTravail</span><span class="p">.</span><span class="n">Keys</span><span class="p">.</span><span class="n">GetEnumerator</span>
 <a id="__codelineno-18-45" name="__codelineno-18-45" href="#__codelineno-18-45"></a><span class="w">            </span><span class="k">Dim</span><span class="w"> </span><span class="n">clé</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="kt">Object</span>
 <a id="__codelineno-18-46" name="__codelineno-18-46" href="#__codelineno-18-46"></a><span class="w">            </span><span class="k">While</span><span class="w"> </span><span class="n">clés</span><span class="p">.</span><span class="n">MoveNext</span>
 <a id="__codelineno-18-47" name="__codelineno-18-47" href="#__codelineno-18-47"></a><span class="w">                </span><span class="n">clé</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">clés</span><span class="p">.</span><span class="n">Current</span>
 <a id="__codelineno-18-48" name="__codelineno-18-48" href="#__codelineno-18-48"></a><span class="w">                </span><span class="n">identité</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="kt">String</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="s">&quot;[{0},{1}] &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">clé</span><span class="p">,</span><span class="w"> </span><span class="n">groupesDeTravail</span><span class="p">(</span><span class="n">clé</span><span class="p">))</span>
 <a id="__codelineno-18-49" name="__codelineno-18-49" href="#__codelineno-18-49"></a><span class="w">            </span><span class="k">End</span><span class="w"> </span><span class="k">While</span>
-<a id="__codelineno-18-50" name="__codelineno-18-50" href="#__codelineno-18-50"></a><span class="w">            </span><span class="c">&#39; we return the result</span>
+<a id="__codelineno-18-50" name="__codelineno-18-50" href="#__codelineno-18-50"></a><span class="w">             </span><span class="c">&#39; إرجاع النتيجة</span>
 <a id="__codelineno-18-51" name="__codelineno-18-51" href="#__codelineno-18-51"></a><span class="w">            </span><span class="k">Return</span><span class="w"> </span><span class="n">identité</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;]&quot;</span>
 <a id="__codelineno-18-52" name="__codelineno-18-52" href="#__codelineno-18-52"></a><span class="w">        </span><span class="k">End</span><span class="w"> </span><span class="k">Function</span>
 <a id="__codelineno-18-53" name="__codelineno-18-53" href="#__codelineno-18-53"></a>
-<a id="__codelineno-18-54" name="__codelineno-18-54" href="#__codelineno-18-54"></a><span class="w">        </span><span class="c">&#39; init-destroy methods</span>
+<a id="__codelineno-18-54" name="__codelineno-18-54" href="#__codelineno-18-54"></a><span class="w">         </span><span class="c">&#39; طرق init-destroy</span>
 <a id="__codelineno-18-55" name="__codelineno-18-55" href="#__codelineno-18-55"></a><span class="w">        </span><span class="k">Public</span><span class="w"> </span><span class="k">Sub</span><span class="w"> </span><span class="nf">init</span><span class="p">()</span>
 <a id="__codelineno-18-56" name="__codelineno-18-56" href="#__codelineno-18-56"></a><span class="w">            </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;init GroupeDePersonnes {0}&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">Me</span><span class="p">.</span><span class="n">ToString</span><span class="p">)</span>
 <a id="__codelineno-18-57" name="__codelineno-18-57" href="#__codelineno-18-57"></a><span class="w">        </span><span class="k">End</span><span class="w"> </span><span class="k">Sub</span>
@@ -1117,15 +1116,15 @@
 <a id="__codelineno-18-64" name="__codelineno-18-64" href="#__codelineno-18-64"></a><span class="k">End</span><span class="w"> </span><span class="k">Namespace</span>
 </code></pre></div>
 <p>عضواها الخاصان هما:</p>
-<p><strong>_members</strong>: مصفوفة تضم الأشخاص الأعضاء في المجموعة</p>
-<p><strong>_workGroups</strong>: قاموس يربط كل شخص بمجموعة عمل</p>
-<p>يتم إتاحة الوصول إلى هذه العناصر الخاصة عبر خصائص عامة. الهدف هنا هو توضيح كيف تتيح لك <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> تهيئة كائنات معقدة، مثل تلك التي تحتوي على حقول مصفوفة أو قاموس.</p>
+<p><strong>_membres</strong>: جدول بأسماء أعضاء المجموعة</p>
+<p><strong>_groupesDeTravail</strong>: قاموس يربط شخصًا بمجموعة عمل</p>
+<p>يتم إتاحة الوصول إلى هذه العناصر الخاصة عبر خصائص عامة. نهدف هنا إلى توضيح كيفية قيام <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> بتهيئة الكائنات المعقدة، مثل الكائنات التي تحتوي على حقول من نوع المصفوفة أو القاموس.</p>
 <p>سيكون ملف تكوين <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> [<bdi dir="ltr" class="odt-ltr-term">spring-config-3.xml</bdi>] كما يلي:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;iso-8859-1&quot; ?&gt;</span>
 <a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="cp">&lt;!DOCTYPE objects PUBLIC &quot;-//SPRING//DTD OBJECT//EN&quot;</span>
 <a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="cp">&quot;http://www.springframework.net/dtd/spring-objects.dtd&quot;&gt;</span>
 <a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="nt">&lt;objects&gt;</span>
-<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="w">     </span><span class="cm">&lt;!-- people --&gt;</span>
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="w">     </span><span class="cm">&lt;!-- الأشخاص --&gt;</span>
 <a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="w">    </span><span class="nt">&lt;object</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;personne1&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;istia.st.springioc.demos.Personne, demo1&quot;</span><span class="w"> </span><span class="na">init-method=</span><span class="s">&quot;init&quot;</span>
 <a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="w">        </span><span class="na">destroy-method=</span><span class="s">&quot;close&quot;</span><span class="nt">&gt;</span>
 <a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="w">        </span><span class="nt">&lt;property</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;nom&quot;</span><span class="nt">&gt;</span>
@@ -1144,7 +1143,7 @@
 <a id="__codelineno-19-21" name="__codelineno-19-21" href="#__codelineno-19-21"></a><span class="w">            </span><span class="nt">&lt;value&gt;</span>20<span class="nt">&lt;/value&gt;</span>
 <a id="__codelineno-19-22" name="__codelineno-19-22" href="#__codelineno-19-22"></a><span class="w">        </span><span class="nt">&lt;/property&gt;</span>
 <a id="__codelineno-19-23" name="__codelineno-19-23" href="#__codelineno-19-23"></a><span class="w">    </span><span class="nt">&lt;/object&gt;</span>
-<a id="__codelineno-19-24" name="__codelineno-19-24" href="#__codelineno-19-24"></a><span class="w">     </span><span class="cm">&lt;!-- a car --&gt;</span>
+<a id="__codelineno-19-24" name="__codelineno-19-24" href="#__codelineno-19-24"></a><span class="w">     </span><span class="cm">&lt;!-- سيارة --&gt;</span>
 <a id="__codelineno-19-25" name="__codelineno-19-25" href="#__codelineno-19-25"></a><span class="w">    </span><span class="nt">&lt;object</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;voiture1&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;istia.st.springioc.demos.Voiture, demo1&quot;</span><span class="w"> </span><span class="na">init-method=</span><span class="s">&quot;init&quot;</span>
 <a id="__codelineno-19-26" name="__codelineno-19-26" href="#__codelineno-19-26"></a><span class="w">        </span><span class="na">destroy-method=</span><span class="s">&quot;destroy&quot;</span><span class="nt">&gt;</span>
 <a id="__codelineno-19-27" name="__codelineno-19-27" href="#__codelineno-19-27"></a><span class="w">        </span><span class="nt">&lt;constructor-arg</span><span class="w"> </span><span class="na">index=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>
@@ -1157,7 +1156,7 @@
 <a id="__codelineno-19-34" name="__codelineno-19-34" href="#__codelineno-19-34"></a><span class="w">            </span><span class="nt">&lt;ref</span><span class="w"> </span><span class="na">object=</span><span class="s">&quot;personne2&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 <a id="__codelineno-19-35" name="__codelineno-19-35" href="#__codelineno-19-35"></a><span class="w">        </span><span class="nt">&lt;/constructor-arg&gt;</span>
 <a id="__codelineno-19-36" name="__codelineno-19-36" href="#__codelineno-19-36"></a><span class="w">    </span><span class="nt">&lt;/object&gt;</span>
-<a id="__codelineno-19-37" name="__codelineno-19-37" href="#__codelineno-19-37"></a><span class="w">     </span><span class="cm">&lt;!-- a group of people --&gt;</span>
+<a id="__codelineno-19-37" name="__codelineno-19-37" href="#__codelineno-19-37"></a><span class="w">     </span><span class="cm">&lt;!-- مجموعة من الأشخاص --&gt;</span>
 <a id="__codelineno-19-38" name="__codelineno-19-38" href="#__codelineno-19-38"></a><span class="w">    </span><span class="nt">&lt;object</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;groupe1&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;istia.st.springioc.demos.GroupePersonnes&quot;</span><span class="w"> </span><span class="na">init-method=</span><span class="s">&quot;init&quot;</span>
 <a id="__codelineno-19-39" name="__codelineno-19-39" href="#__codelineno-19-39"></a><span class="w">        </span><span class="na">destroy-method=</span><span class="s">&quot;destroy&quot;</span><span class="nt">&gt;</span>
 <a id="__codelineno-19-40" name="__codelineno-19-40" href="#__codelineno-19-40"></a><span class="w">        </span><span class="nt">&lt;property</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;membres&quot;</span><span class="nt">&gt;</span>
@@ -1180,14 +1179,14 @@
 <a id="__codelineno-19-57" name="__codelineno-19-57" href="#__codelineno-19-57"></a><span class="nt">&lt;/objects&gt;</span>
 </code></pre></div>
 <ol>
-<li>تسمح لك علامة &lt;<strong><bdi dir="ltr" class="odt-ltr-term">list</bdi></strong>&gt; بتهيئة حقل من نوع المصفوفة أو <strong>نوع <bdi dir="ltr" class="odt-ltr-term">IList</bdi></strong> بقيم مختلفة.</li>
+<li>تسمح العلامة &lt;<strong><bdi dir="ltr" class="odt-ltr-term">list</bdi></strong>&gt; بتهيئة حقل من نوع المصفوفة أو من نوع <strong><bdi dir="ltr" class="odt-ltr-term">IList</bdi></strong> بقيم مختلفة.</li>
 </ol>
 <ol start="2">
-  <li>تسمح لك العلامة &lt;<b><bdi dir="ltr" class="odt-ltr-term">dictionary</bdi></b>&gt; بالقيام بنفس الشيء مع حقل ينفذ واجهة <b><bdi dir="ltr" class="odt-ltr-term">IDictionary</bdi></b>
+  <li>تسمح العلامة &lt;<b><bdi dir="ltr" class="odt-ltr-term">dictionary</bdi></b>&gt; بالقيام بنفس الشيء مع حقل ينفذ واجهة <b><bdi dir="ltr" class="odt-ltr-term">IDictionary</bdi></b>
   </li>
 </ol>
 
-<p>في اختباراتنا، سنستخدم فئة اختبار <bdi dir="ltr" class="odt-ltr-term">NUnit</bdi> التالية [<bdi dir="ltr" class="odt-ltr-term">NunitTestSpringIocDemo3</bdi>]:</p>
+<p>لإجراء اختباراتنا، سنستخدم فئة الاختبار التالية: <bdi dir="ltr" class="odt-ltr-term">NUnit</bdi> [<bdi dir="ltr" class="odt-ltr-term">NunitTestSpringIocDemo3</bdi>]:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">Imports</span><span class="w"> </span><span class="nn">System</span>
 <a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="k">Imports</span><span class="w"> </span><span class="nn">Spring.Objects.Factory.Xml</span>
 <a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="k">Imports</span><span class="w"> </span><span class="nn">System.IO</span>
@@ -1198,28 +1197,28 @@
 <a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>
 <a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span class="w">    </span><span class="o">&lt;</span><span class="n">TestFixture</span><span class="p">()</span><span class="o">&gt;</span><span class="w"> </span>_
 <a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a><span class="w">    </span><span class="k">Public</span><span class="w"> </span><span class="k">Class</span><span class="w"> </span><span class="nc">NunitTestSpringIocDemo3</span>
-<a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a><span class="w">        </span><span class="c">&#39; the test object</span>
+<a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a><span class="w">         </span><span class="c">&#39; العنصر المراد اختباره</span>
 <a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a><span class="w">        </span><span class="k">Private</span><span class="w"> </span><span class="n">factory</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="n">XmlObjectFactory</span>
 <a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a>
 <a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a><span class="w">        </span><span class="o">&lt;</span><span class="n">SetUp</span><span class="p">()</span><span class="o">&gt;</span><span class="w"> </span>_
 <a id="__codelineno-20-15" name="__codelineno-20-15" href="#__codelineno-20-15"></a><span class="w">        </span><span class="k">Public</span><span class="w"> </span><span class="k">Sub</span><span class="w"> </span><span class="nf">init</span><span class="p">()</span>
-<a id="__codelineno-20-16" name="__codelineno-20-16" href="#__codelineno-20-16"></a><span class="w">            </span><span class="c">&#39; create a factory instance</span>
+<a id="__codelineno-20-16" name="__codelineno-20-16" href="#__codelineno-20-16"></a><span class="w">             </span><span class="c">&#39; يتم إنشاء مثيل من المصنع</span>
 <a id="__codelineno-20-17" name="__codelineno-20-17" href="#__codelineno-20-17"></a><span class="w">            </span><span class="n">factory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">New</span><span class="w"> </span><span class="n">XmlObjectFactory</span><span class="p">(</span><span class="k">New</span><span class="w"> </span><span class="n">FileStream</span><span class="p">(</span><span class="s">&quot;spring-config-3.xml&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">FileMode</span><span class="p">.</span><span class="n">Open</span><span class="p">))</span>
-<a id="__codelineno-20-18" name="__codelineno-20-18" href="#__codelineno-20-18"></a><span class="w">            </span><span class="c">&#39; log</span>
+<a id="__codelineno-20-18" name="__codelineno-20-18" href="#__codelineno-20-18"></a><span class="w">             </span><span class="c">&#39; سجل</span>
 <a id="__codelineno-20-19" name="__codelineno-20-19" href="#__codelineno-20-19"></a><span class="w">            </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;setup test&quot;</span><span class="p">)</span>
 <a id="__codelineno-20-20" name="__codelineno-20-20" href="#__codelineno-20-20"></a><span class="w">        </span><span class="k">End</span><span class="w"> </span><span class="k">Sub</span>
 <a id="__codelineno-20-21" name="__codelineno-20-21" href="#__codelineno-20-21"></a>
 <a id="__codelineno-20-22" name="__codelineno-20-22" href="#__codelineno-20-22"></a><span class="w">        </span><span class="o">&lt;</span><span class="n">TearDown</span><span class="p">()</span><span class="o">&gt;</span><span class="w"> </span>_
 <a id="__codelineno-20-23" name="__codelineno-20-23" href="#__codelineno-20-23"></a><span class="w">        </span><span class="k">Public</span><span class="w"> </span><span class="k">Sub</span><span class="w"> </span><span class="nf">destroy</span><span class="p">()</span>
-<a id="__codelineno-20-24" name="__codelineno-20-24" href="#__codelineno-20-24"></a><span class="w">            </span><span class="c">&#39; we destroy the singletons</span>
+<a id="__codelineno-20-24" name="__codelineno-20-24" href="#__codelineno-20-24"></a><span class="w">             </span><span class="c">&#39; يتم تدمير العناصر الفردية</span>
 <a id="__codelineno-20-25" name="__codelineno-20-25" href="#__codelineno-20-25"></a><span class="w">            </span><span class="n">factory</span><span class="p">.</span><span class="n">Dispose</span><span class="p">()</span>
-<a id="__codelineno-20-26" name="__codelineno-20-26" href="#__codelineno-20-26"></a><span class="w">            </span><span class="c">&#39; follow-up</span>
+<a id="__codelineno-20-26" name="__codelineno-20-26" href="#__codelineno-20-26"></a><span class="w">             </span><span class="c">&#39; المتابعة</span>
 <a id="__codelineno-20-27" name="__codelineno-20-27" href="#__codelineno-20-27"></a><span class="w">            </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;teardown test&quot;</span><span class="p">)</span>
 <a id="__codelineno-20-28" name="__codelineno-20-28" href="#__codelineno-20-28"></a><span class="w">        </span><span class="k">End</span><span class="w"> </span><span class="k">Sub</span>
 <a id="__codelineno-20-29" name="__codelineno-20-29" href="#__codelineno-20-29"></a>
 <a id="__codelineno-20-30" name="__codelineno-20-30" href="#__codelineno-20-30"></a><span class="w">        </span><span class="o">&lt;</span><span class="n">Test</span><span class="p">()</span><span class="o">&gt;</span><span class="w"> </span>_
 <a id="__codelineno-20-31" name="__codelineno-20-31" href="#__codelineno-20-31"></a><span class="w">    </span><span class="k">Public</span><span class="w"> </span><span class="k">Sub</span><span class="w"> </span><span class="nf">demo3</span><span class="p">()</span>
-<a id="__codelineno-20-32" name="__codelineno-20-32" href="#__codelineno-20-32"></a><span class="w">            </span><span class="c">&#39; retrieving the singleton [group1]</span>
+<a id="__codelineno-20-32" name="__codelineno-20-32" href="#__codelineno-20-32"></a><span class="w">             </span><span class="c">&#39; استرداد الكائن الفردي [groupe1]</span>
 <a id="__codelineno-20-33" name="__codelineno-20-33" href="#__codelineno-20-33"></a><span class="w">            </span><span class="k">Dim</span><span class="w"> </span><span class="n">groupe1</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="n">GroupePersonnes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">CType</span><span class="p">(</span><span class="n">factory</span><span class="p">.</span><span class="n">GetObject</span><span class="p">(</span><span class="s">&quot;groupe1&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">GroupePersonnes</span><span class="p">)</span>
 <a id="__codelineno-20-34" name="__codelineno-20-34" href="#__codelineno-20-34"></a><span class="w">            </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;groupe1={0}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">groupe1</span><span class="p">)</span>
 <a id="__codelineno-20-35" name="__codelineno-20-35" href="#__codelineno-20-35"></a><span class="w">        </span><span class="k">End</span><span class="w"> </span><span class="k">Sub</span>
@@ -1227,11 +1226,11 @@
 <a id="__codelineno-20-37" name="__codelineno-20-37" href="#__codelineno-20-37"></a><span class="w">    </span><span class="k">End</span><span class="w"> </span><span class="k">Class</span>
 <a id="__codelineno-20-38" name="__codelineno-20-38" href="#__codelineno-20-38"></a><span class="k">End</span><span class="w"> </span><span class="k">Namespace</span>
 </code></pre></div>
-<p>تسترد الطريقة [<bdi dir="ltr" class="odt-ltr-term">demo3</bdi>] العنصر الفردي [<bdi dir="ltr" class="odt-ltr-term">group1</bdi>] وتعرضه.</p>
-<p>تظل بنية مشروع <bdi dir="ltr" class="odt-ltr-term">Visual Studio</bdi> كما هي، باستثناء أنه يحتوي الآن على فئتين إضافيتين وملف تكوين.</p>
-<p><img src="images/10000000000001280000011D4A7B3342.png" width="207" height="199" style="width:5.479cm;height:5.276cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001280000011D4A7B3342.png" /></p>
-<p>يؤدي تنفيذ الطريقة [<bdi dir="ltr" class="odt-ltr-term">demo3</bdi>] في اختبار <bdi dir="ltr" class="odt-ltr-term">NUnit</bdi> إلى النتائج التالية:</p>
-<p><img src="images/10000000000003B60000010A61F01CE6.png" width="680" height="190" style="width:17.995cm;height:5.039cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000003B60000010A61F01CE6.png" /></p>
+<p>تسترد الطريقة [<bdi dir="ltr" class="odt-ltr-term">demo3</bdi>] العنصر الفردي [<bdi dir="ltr" class="odt-ltr-term">groupe1</bdi>] وتعرضه.</p>
+<p>تظل بنية مشروع <bdi dir="ltr" class="odt-ltr-term">Visual Studio</bdi> كما كانت من قبل، باستثناء أنه يحتوي على فئتين وملف تكوين إضافيين.</p>
+<p><img src="images/10000000000001280000011D4A7B3342.png" width="207" height="199" style="width:5.479cm;height:5.278cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001280000011D4A7B3342.png" /></p>
+<p>يؤدي تنفيذ الطريقة [<bdi dir="ltr" class="odt-ltr-term">demo3</bdi>] في الاختبار <bdi dir="ltr" class="odt-ltr-term">NUnit</bdi> إلى النتائج التالية:</p>
+<p><img src="images/10000000000003B60000010A61F01CE6.png" width="680" height="190" style="width:17.995cm;height:5.038cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000003B60000010A61F01CE6.png" /></p>
 <p><strong>تعليقات</strong>:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-21-2"> 2</a></span>
@@ -1254,15 +1253,15 @@
 <a id="__codelineno-21-10" name="__codelineno-21-10"></a>teardown test
 </code></pre></div></td></tr></table></div>
 <ul>
-  <li>السطر 2: طريقة السمة [<bdi dir="ltr" class="odt-ltr-term">Setup</bdi>] التي يتم تنفيذها قبل كل اختبار، وهنا [<bdi dir="ltr" class="odt-ltr-term">demo</bdi>]
+  <li>السطر 2: طريقة السمة [<bdi dir="ltr" class="odt-ltr-term">Setup</bdi>] التي يتم تنفيذها قبل كل اختبار، وهي هنا [<bdi dir="ltr" class="odt-ltr-term">demo</bdi>]
   </li>
-  <li>السطران 3-4: يبدأ <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> في إنشاء الكائن الفردي [<bdi dir="ltr" class="odt-ltr-term">group1</bdi>]. يعتمد هذا الكائن الفردي على الكائنين الفرديين [<bdi dir="ltr" class="odt-ltr-term">person1</bdi>، <bdi dir="ltr" class="odt-ltr-term">person2</bdi>]، اللذين لا يزالان غير موجودين. يتم إنشاء هذين الكائنين الفرديين وتنفيذ طريقتيهما [<bdi dir="ltr" class="odt-ltr-term">init</bdi>].
+  <li>السطران 3-4: يبدأ <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> في إنشاء الكائن الفردي [<bdi dir="ltr" class="odt-ltr-term">groupe1</bdi>]. وهذا الكائن يعتمد على الكائنات الفردية [<bdi dir="ltr" class="odt-ltr-term">personne1, personne2</bdi>] التي لا توجد. يتم إنشاء هذه الكائنات وتنفيذ طرقها [<bdi dir="ltr" class="odt-ltr-term">init</bdi>].
   </li>
-  <li>السطر 5: يمكن الآن إنشاء الكائن الفردي [<bdi dir="ltr" class="odt-ltr-term">group1</bdi>]. ثم يتم تنفيذ طريقة [<bdi dir="ltr" class="odt-ltr-term">init</bdi>] الخاصة به.
+  <li>السطر 5: يمكن الآن إنشاء الكائن الفردي [<bdi dir="ltr" class="odt-ltr-term">groupe1</bdi>]. ثم يتم تنفيذ طريقة [<bdi dir="ltr" class="odt-ltr-term">init</bdi>] الخاصة به.
   </li>
-  <li>السطر 6: تعرض طريقة [<bdi dir="ltr" class="odt-ltr-term">demo3</bdi>] قيمة الكائن الفريد [<bdi dir="ltr" class="odt-ltr-term">group1</bdi>]
+  <li>السطر 6: تعرض الطريقة [<bdi dir="ltr" class="odt-ltr-term">demo3</bdi>] قيمة الكائن الفردي [<bdi dir="ltr" class="odt-ltr-term">groupe1</bdi>]
   </li>
-  <li>الأسطر 7-10: يتم تنفيذ طريقة [<bdi dir="ltr" class="odt-ltr-term">TearDown</bdi>] الخاصة بالاختبار. يتم تدمير الكائنات الفردية، مما يؤدي إلى تنفيذ طرق [<bdi dir="ltr" class="odt-ltr-term">destroy</bdi>] الخاصة بها
+  <li>الأسطر 7-10: يتم تنفيذ الطريقة [<bdi dir="ltr" class="odt-ltr-term">TearDown</bdi>] الخاصة بالاختبار. يتم تدمير الكائنات الفردية، مما يؤدي إلى تنفيذ طرقها [<bdi dir="ltr" class="odt-ltr-term">destroy</bdi>]
   </li>
 </ul>
 

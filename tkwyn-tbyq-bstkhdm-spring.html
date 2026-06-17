@@ -18,7 +18,7 @@
         <link rel="prev" href="mqdm.html">
       
       
-        <link rel="next" href="nks-ltkm-ioc.html">
+        <link rel="next" href="ks-ltkm-ioc.html">
       
       
         
@@ -369,14 +369,14 @@
   
   
     <li class="md-nav__item">
-      <a href="nks-ltkm-ioc.html" class="md-nav__link">
+      <a href="ks-ltkm-ioc.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    3. انعكاس التحكم (IoC)
+    3. عكس التحكم IoC
   
 
     
@@ -423,14 +423,14 @@
   
   
     <li class="md-nav__item">
-      <a href="spring-ioc-fy-lmmrs-lmly.html" class="md-nav__link">
+      <a href="spring-ioc-mn-lny-lmly.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    5. Spring IoC في الممارسة العملية
+    5. Spring IoC من الناحية العملية
   
 
     
@@ -477,14 +477,14 @@
   
   
     <li class="md-nav__item">
-      <a href="ll.html" class="md-nav__link">
+      <a href="l.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    7. الحل
+    7. حل
   
 
     
@@ -542,35 +542,34 @@
 
 
 <h1 id="2-spring">2. <span style="color: #365f91">تكوين تطبيق باستخدام <bdi dir="ltr" class="odt-ltr-term">Spring</bdi></span></h1>
-<p>لنتأمل تطبيقًا كلاسيكيًا ثلاثي الطبقات:</p>
-<table dir="rtl" class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td dir="rtl" style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: right;"><img src="images/10000000000006EA000001322F08DDC2.png" width="680" height="118" style="display:inline-block; margin:4px;width:17.997cm;height:3.112cm;" class="odt-zoomable" data-zoom-src="images/10000000000006EA000001322F08DDC2.png" /></td></tr></table>
+<p>لنأخذ تطبيقًا كلاسيكيًا ثلاثي المستويات كمثال:</p>
+<table dir="rtl" class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td dir="rtl" style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: right;"><img src="images/10000000000006EA000001322F08DDC2.png" width="680" height="118" style="display:inline-block; margin:4px;width:17.997cm;height:3.11cm;" class="odt-zoomable" data-zoom-src="images/10000000000006EA000001322F08DDC2.png" /></td></tr></table>
 
-<p>سنفترض أن الوصول إلى طبقة <bdi dir="ltr" class="odt-ltr-term">DAO</bdi> يتم التحكم فيه بواسطة واجهة [<bdi dir="ltr" class="odt-ltr-term">IArticlesDao</bdi>]:</p>
+<p>سنفترض أن الوصول إلى الطبقة <bdi dir="ltr" class="odt-ltr-term">DAO</bdi> يتم التحكم فيه بواسطة واجهة [<bdi dir="ltr" class="odt-ltr-term">IArticlesDao</bdi>]:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">....</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">Namespace</span><span class="w"> </span><span class="nn">istia.st.articles.dao</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="k">Public</span><span class="w"> </span><span class="k">Interface</span><span class="w"> </span><span class="n">IArticlesDao</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">        </span><span class="c">&#39; list of all items</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">         </span><span class="c">&#39; قائمة بجميع المقالات</span>
 <a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">        </span><span class="k">Function</span><span class="w"> </span><span class="nf">getAllArticles</span><span class="p">()</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="n">IList</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">        </span><span class="c">&#39; add an article</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">         </span><span class="c">&#39; تضيف مادة</span>
 <a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">        </span><span class="k">Function</span><span class="w"> </span><span class="nf">ajouteArticle</span><span class="p">(</span><span class="k">ByVal</span><span class="w"> </span><span class="n">unArticle</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="n">Article</span><span class="p">)</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="kt">Integer</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">        </span><span class="c">&#39; deletes an article</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">         </span><span class="c">&#39; حذف عنصر</span>
 <a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">        </span><span class="k">Function</span><span class="w"> </span><span class="nf">supprimeArticle</span><span class="p">(</span><span class="k">ByVal</span><span class="w"> </span><span class="n">idArticle</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="kt">Integer</span><span class="p">)</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="kt">Integer</span>
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">        </span><span class="c">&#39; modify an article</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">         </span><span class="c">&#39; تعديل عنصر</span>
 <a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">        </span><span class="k">Function</span><span class="w"> </span><span class="nf">modifieArticle</span><span class="p">(</span><span class="k">ByVal</span><span class="w"> </span><span class="n">unArticle</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="n">Article</span><span class="p">)</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="kt">Integer</span>
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">        </span><span class="c">&#39; search for an article</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">         </span><span class="c">&#39; البحث عن مقال</span>
 <a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">        </span><span class="k">Function</span><span class="w"> </span><span class="nf">getArticleById</span><span class="p">(</span><span class="k">ByVal</span><span class="w"> </span><span class="n">idArticle</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="kt">Integer</span><span class="p">)</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="n">Article</span>
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">        </span><span class="c">&#39; deletes all articles</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">         </span><span class="c">&#39; حذف جميع المقالات</span>
 <a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">        </span><span class="k">Sub</span><span class="w"> </span><span class="nf">clearAllArticles</span><span class="p">()</span>
-<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">        </span><span class="c">&#39; inserts items within a transaction</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">         </span><span class="c">&#39; إدراج بنود ضمن معاملة</span>
 <a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">        </span><span class="k">Sub</span><span class="w"> </span><span class="nf">doInsertionsInTransaction</span><span class="p">(</span><span class="k">ByVal</span><span class="w"> </span><span class="n">articles</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="n">Article</span><span class="p">())</span>
-<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">        </span><span class="c">&#39; changes the stock of an item</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">         </span><span class="c">&#39; يغير مخزون أحد الأصناف</span>
 <a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">        </span><span class="k">Function</span><span class="w"> </span><span class="nf">changerStockArticle</span><span class="p">(</span><span class="k">ByVal</span><span class="w"> </span><span class="n">idArticle</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="kt">Integer</span><span class="p">,</span><span class="w"> </span><span class="k">ByVal</span><span class="w"> </span><span class="n">mouvement</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="kt">Integer</span><span class="p">)</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="kt">Integer</span>
 <a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">    </span><span class="k">End</span><span class="w"> </span><span class="k">Interface</span>
 <a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="k">End</span><span class="w"> </span><span class="k">Namespace</span>
-<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="k">End</span><span class="w"> </span><span class="k">Namespace</span>
 </code></pre></div>
-<p>في طبقة الوصول إلى البيانات أو طبقة <bdi dir="ltr" class="odt-ltr-term">DAO</bdi> (كائن الوصول إلى البيانات)، من الشائع العمل مع نظام إدارة قواعد البيانات (<bdi dir="ltr" class="odt-ltr-term">DBMS</bdi>). لنفترض حالة الوصول إليه عبر برنامج تشغيل <bdi dir="ltr" class="odt-ltr-term">ODBC.</bdi> قد يكون الهيكل الأساسي لفئة تصل إلى مصدر <bdi dir="ltr" class="odt-ltr-term">ODBC</bdi> هذا كما يلي:</p>
+<p>في طبقة الوصول إلى البيانات أو طبقة <bdi dir="ltr" class="odt-ltr-term">DAO</bdi> (<bdi dir="ltr" class="odt-ltr-term">Data Access Object</bdi>)، من الشائع العمل باستخدام كائن <bdi dir="ltr" class="odt-ltr-term">SGBD.</bdi> لنفترض الحالة التي يتم فيها الوصول إلى هذا الكائن عبر برنامج تشغيل <bdi dir="ltr" class="odt-ltr-term">ODBC.</bdi> قد يكون الهيكل الأساسي لفئة تصل إلى مصدر <bdi dir="ltr" class="odt-ltr-term">ODBC</bdi> هذا كما يلي:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">NameSpace</span><span class="w"> </span><span class="nn">istia.st.articles.dao</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">Imports</span><span class="w"> </span><span class="nn">System.Data.Odbc</span>
@@ -578,16 +577,16 @@
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="k">Public</span><span class="w"> </span><span class="k">Class</span><span class="w"> </span><span class="nc">ArticlesDaoPlainODBC</span>
 <a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">        </span><span class="k">Implements</span><span class="w"> </span><span class="n">istia</span><span class="p">.</span><span class="n">st</span><span class="p">.</span><span class="n">articles</span><span class="p">.</span><span class="n">dao</span><span class="p">.</span><span class="n">IArticlesDao</span>
 <a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">        </span><span class="c">&#39; private fields</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">         </span><span class="c">&#39; الحقول الخاصة</span>
 <a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">        </span><span class="k">Private</span><span class="w"> </span><span class="n">connexion</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="n">OdbcConnection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">Nothing</span>
 <a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">        </span><span class="k">Private</span><span class="w"> </span><span class="n">DSN</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="kt">String</span>
 <a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
 <a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">        </span><span class="k">Public</span><span class="w"> </span><span class="k">Sub</span><span class="w"> </span><span class="nf">New</span><span class="p">(</span><span class="k">ByVal</span><span class="w"> </span><span class="n">DSN</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="k">ByVal</span><span class="w"> </span><span class="n">user</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="k">ByVal</span><span class="w"> </span><span class="n">passwd</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span>
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">            </span><span class="c">&#39;retrieve the source name ODBC</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">             </span><span class="c">&#39;استرداد اسم المصدر ODBC</span>
 <a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">            </span><span class="k">Me</span><span class="p">.</span><span class="n">DSN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DSN</span>
-<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">            </span><span class="c">&#39; we create the connection string</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">             </span><span class="c">&#39; يتم إنشاء سلسلة الاتصال</span>
 <a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">            </span><span class="k">Dim</span><span class="w"> </span><span class="n">connectString</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">String</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="s">&quot;DSN={0};UID={1};PWD={2}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">DSN</span><span class="p">,</span><span class="w"> </span><span class="n">user</span><span class="p">,</span><span class="w"> </span><span class="n">passwd</span><span class="p">)</span>
-<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">            </span><span class="c">&#39;we instantiate the connection</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">             </span><span class="c">&#39;إنشاء مثيل للاتصال</span>
 <a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">            </span><span class="n">connexion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">New</span><span class="w"> </span><span class="n">OdbcConnection</span><span class="p">(</span><span class="n">connectString</span><span class="p">)</span>
 <a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">        </span><span class="k">End</span><span class="w"> </span><span class="k">Sub</span>
 <a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>
@@ -595,22 +594,22 @@
 <a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="w">    </span><span class="k">End</span><span class="w"> </span><span class="k">Class</span>
 <a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="k">End</span><span class="w"> </span><span class="k">NameSpace</span>
 </code></pre></div>
-<p>لإجراء عملية على مصدر <bdi dir="ltr" class="odt-ltr-term">ODBC</bdi>، تتطلب كل طريقة كائن [<bdi dir="ltr" class="odt-ltr-term">OdbcConnection</bdi>] يمثل الاتصال بقاعدة البيانات الذي سيتم من خلاله تبادل البيانات بين قاعدة البيانات والتطبيق. لإنشاء هذا الكائن، يلزم توفر ثلاث معلومات:</p>
+<p>لإجراء عملية على المصدر <bdi dir="ltr" class="odt-ltr-term">ODBC</bdi>، تحتاج أي طريقة إلى كائن [<bdi dir="ltr" class="odt-ltr-term">OdbcConnection</bdi>] الذي يمثل الاتصال بقاعدة البيانات والذي سيمر عبره التبادل بينها وبين التطبيق. لإنشاء هذا الكائن، نحتاج إلى ثلاث معلومات:</p>
 <table dir="rtl" class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td dir="rtl" style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: right;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>DSN كسلسلة
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>DSN As String
 </code></pre></div>
-</div></td><td dir="rtl" style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: right;"><div style="margin:0 0 0.5em 0">اسم مصدر <bdi dir="ltr" class="odt-ltr-term">ODBC</bdi></div></td></tr><tr><td dir="rtl" style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: right;"><div markdown="block">
+</div></td><td dir="rtl" style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: right;"><div style="margin:0 0 0.5em 0">اسم المصدر <bdi dir="ltr" class="odt-ltr-term">ODBC</bdi></div></td></tr><tr><td dir="rtl" style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: right;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>user As String
 </code></pre></div>
-</div></td><td dir="rtl" style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: right;"><div style="margin:0 0 0.5em 0">اسم المستخدم المستخدم لتسجيل الدخول</div></td></tr><tr><td dir="rtl" style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: right;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>كلمة المرور كسلسلة
+</div></td><td dir="rtl" style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: right;"><div style="margin:0 0 0.5em 0">الهوية التي يتم من خلالها إنشاء الاتصال</div></td></tr><tr><td dir="rtl" style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: right;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>passwd As String
 </code></pre></div>
 </div></td><td dir="rtl" style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: right;"><div style="margin:0 0 0.5em 0">كلمة المرور المرتبطة بهذه الهوية</div></td></tr></table>
 
-<p>تحصل فئة [<bdi dir="ltr" class="odt-ltr-term">ArticlesDaoPlainODBC</bdi>] الخاصة بنا على هذه المعلومات عبر الوكيل الخارجي الذي يقوم بإنشاء مثيل للفئة. قد يتساءل المرء عن كيفية حصول الوكيل على المعلومات الثلاث المطلوبة لإنشاء مثيل لفئة [<bdi dir="ltr" class="odt-ltr-term">ArticlesDaoPlainODBC</bdi>]. لنأخذ مثالاً على ذلك. لنفترض أننا نريد كتابة فئة اختبار لطبقة [<bdi dir="ltr" class="odt-ltr-term">Dao</bdi>]. سيكون لدينا البنية التالية:</p>
+<p>تحصل فئتنا [<bdi dir="ltr" class="odt-ltr-term">ArticlesDaoPlainODBC</bdi>] على هذه المعلومات عبر الوكيل الخارجي الذي يقوم بإنشاء مثيل لأحد أعضاء الفئة. قد نتساءل كيف يحصل هذا الوكيل على المعلومات الثلاث اللازمة لإنشاء مثيل لفئة [<bdi dir="ltr" class="odt-ltr-term">ArticlesDaoPlainODBC</bdi>]. لنأخذ مثالاً. لنفترض أننا نريد كتابة فئة اختبار للطبقة [<bdi dir="ltr" class="odt-ltr-term">Dao</bdi>]. سيكون لدينا البنية التالية:</p>
 <table dir="rtl" class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td dir="rtl" style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: right;"><img src="images/100000000000055B000000C7F7381DD1.png" width="680" height="99" style="display:inline-block; margin:4px;width:17.997cm;height:2.612cm;" class="odt-zoomable" data-zoom-src="images/100000000000055B000000C7F7381DD1.png" /></td></tr></table>
 
-<p>قد يبدو الهيكل الأساسي لفئة اختبار <bdi dir="ltr" class="odt-ltr-term">NUnit</bdi> [<a href="http://www.nunit.org/"><u><span style="color: #0563c1"><bdi dir="ltr" class="odt-ltr-term">http://www.nunit.org/</bdi></span></u></a>] كما يلي:</p>
+<p>قد يكون الهيكل الأساسي لفئة اختبار <bdi dir="ltr" class="odt-ltr-term">Nunit</bdi> [<bdi dir="ltr" class="odt-ltr-term">http://www.nunit.org/</bdi>] كما يلي:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">Imports</span><span class="w"> </span><span class="nn">System</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">Imports</span><span class="w"> </span><span class="nn">System.Collections</span>
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">Imports</span><span class="w"> </span><span class="nn">NUnit.Framework</span>
@@ -622,22 +621,22 @@
 <a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">    </span><span class="o">&lt;</span><span class="n">TestFixture</span><span class="p">()</span><span class="o">&gt;</span><span class="w"> </span>_
 <a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">    </span><span class="k">Public</span><span class="w"> </span><span class="k">Class</span><span class="w"> </span><span class="nc">NunitTestArticlesDaoPlainOdbc</span>
 <a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>
-<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">        </span><span class="c">&#39; the test object</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">         </span><span class="c">&#39; الكائن المراد اختباره</span>
 <a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="w">        </span><span class="k">Private</span><span class="w"> </span><span class="n">articlesDao</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="n">IArticlesDao</span>
 <a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>
 <a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="w">        </span><span class="o">&lt;</span><span class="n">SetUp</span><span class="p">()</span><span class="o">&gt;</span><span class="w"> </span>_
 <a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="w">        </span><span class="k">Public</span><span class="w"> </span><span class="k">Sub</span><span class="w"> </span><span class="nf">init</span><span class="p">()</span>
-<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="w">            </span><span class="c">&#39; create an instance of the object to be tested</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="w">             </span><span class="c">&#39; يتم إنشاء مثيل للكائن المراد اختباره</span>
 <a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="w">            </span><span class="n">articlesDao</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">New</span><span class="w"> </span><span class="n">ArticlesDaoPlainODBC</span><span class="p">(</span><span class="s">&quot;odbc-firebird-articles&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;SYSDBA&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;masterkey&quot;</span><span class="p">)</span>
 <a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="w">        </span><span class="k">End</span><span class="w"> </span><span class="k">Sub</span>
 <a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>
 <a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a><span class="w">        </span><span class="o">&lt;</span><span class="n">Test</span><span class="p">()</span><span class="o">&gt;</span><span class="w"> </span>_
 <a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a><span class="w">        </span><span class="k">Public</span><span class="w"> </span><span class="k">Sub</span><span class="w"> </span><span class="nf">testGetAllArticles</span><span class="p">()</span>
-<a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a><span class="w">            </span><span class="c">&#39; visual check</span>
+<a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a><span class="w">             </span><span class="c">&#39; التحقق البصري</span>
 <a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a><span class="w">            </span><span class="n">listArticles</span><span class="p">()</span>
 <a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a><span class="w">        </span><span class="k">End</span><span class="w"> </span><span class="k">Sub</span>
 <a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a>
-<a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a><span class="w">        </span><span class="c">&#39; screen listing</span>
+<a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a><span class="w">         </span><span class="c">&#39; عرض الشاشة</span>
 <a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a><span class="w">        </span><span class="k">Private</span><span class="w"> </span><span class="k">Sub</span><span class="w"> </span><span class="nf">listArticles</span><span class="p">()</span>
 <a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a><span class="w">            </span><span class="k">Dim</span><span class="w"> </span><span class="n">articles</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="n">IList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">articlesDao</span><span class="p">.</span><span class="n">getAllArticles</span>
 <a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a><span class="w">            </span><span class="k">For</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="kt">Integer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">To</span><span class="w"> </span><span class="n">articles</span><span class="p">.</span><span class="n">Count</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span>
@@ -648,14 +647,14 @@
 <a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a>
 <a id="__codelineno-5-36" name="__codelineno-5-36" href="#__codelineno-5-36"></a><span class="w">    </span><span class="k">End</span><span class="w"> </span><span class="k">Class</span>
 </code></pre></div>
-<p>إطار عمل الاختبار <bdi dir="ltr" class="odt-ltr-term">NUnit</bdi> هو نسخة مقتبسة لمنصة .<bdi dir="ltr" class="odt-ltr-term">NET</bdi> من إطار عمل <bdi dir="ltr" class="odt-ltr-term">JUnit</bdi> الموجود لمنصة <bdi dir="ltr" class="odt-ltr-term">Java.</bdi> في الفئة أعلاه، يتم تنفيذ الأسلوب الذي يحمل السمة &lt;<bdi dir="ltr" class="odt-ltr-term">SetUp</bdi>()&gt; قبل كل أسلوب اختبار. أما الأسلوب الذي يحمل السمة &lt;<bdi dir="ltr" class="odt-ltr-term">TearDown</bdi>()&gt; فيتم تنفيذه بعد كل اختبار. لا يوجد أي منها في المثال أعلاه. هنا، نرى أن الطريقة [<bdi dir="ltr" class="odt-ltr-term">init</bdi>]، التي تحتوي على السمة &lt;<bdi dir="ltr" class="odt-ltr-term">SetUp</bdi>()&gt;، تقوم بإنشاء مثيل لكائن [<bdi dir="ltr" class="odt-ltr-term">ArticlesDaoPlainODBC</bdi>] عن طريق الترميز الثابت للمعلومات الثلاث التي يتطلبها منشئ الكائن.</p>
-<p>فئة الاختبار لدينا معرضة للتأثر بأي تغييرات في القيم المبرمجة بشكل ثابت. من الأفضل تخزين هذه القيم في ملف تكوين لتجنب عمليات إعادة التجميع غير الضرورية عند تغييرها. النهج القياسي لتكوين التطبيق هو استخدام ملف يحتوي على جميع المعلومات التي من المحتمل أن تتغير بمرور الوقت. هناك مجموعة متنوعة من ملفات التكوين المتاحة. الاتجاه الحالي هو استخدام ملفات <bdi dir="ltr" class="odt-ltr-term">XML.</bdi> هذا هو الخيار الذي اختارته <bdi dir="ltr" class="odt-ltr-term">Spring.</bdi> قد يبدو الملف الذي يقوم بتكوين كائن [<bdi dir="ltr" class="odt-ltr-term">ArticlesDaoPlainODBC</bdi>] كما يلي:</p>
+<p>بيئة الاختبار <bdi dir="ltr" class="odt-ltr-term">Nunit</bdi> هي نسخة مقتبسة لمنصة .<bdi dir="ltr" class="odt-ltr-term">NET</bdi> من بيئة <bdi dir="ltr" class="odt-ltr-term">JUnit</bdi> الموجودة لمنصة <bdi dir="ltr" class="odt-ltr-term">Java.</bdi> في الفئة أعلاه، يتم تنفيذ الأسلوب الذي يحمل السمة &lt;<bdi dir="ltr" class="odt-ltr-term">SetUp</bdi>()&gt; قبل كل أسلوب اختبار. أما الأسلوب الذي يحمل السمة &lt;<bdi dir="ltr" class="odt-ltr-term">TearDown</bdi>()&gt;، فيتم تنفيذه بعد كل اختبار. ولا يوجد أي منها في المثال أعلاه. هنا، نرى أن الطريقة [<bdi dir="ltr" class="odt-ltr-term">init</bdi>] التي تحمل السمة &lt;<bdi dir="ltr" class="odt-ltr-term">SetUp</bdi>()&gt;، تقوم بإنشاء مثيل لكائن [<bdi dir="ltr" class="odt-ltr-term">ArticlesDaoPlainODBC</bdi>] عن طريق تمرير المعلومات الثلاث التي يحتاجها منشئ هذا الكائن بشكل «ثابت».</p>
+<p>تصبح فئة الاختبار الخاصة بنا عرضة لأي تغيير في إحدى المعلومات المكتوبة بشكل ثابت. ومن الأفضل أن يتم تسجيل هذه المعلومات في ملف تكوين، لتجنب عمليات إعادة التجميع غير الضرورية عند تغييرها. الحل المعتاد لتكوين التطبيق هو استخدام ملف يحتوي على جميع المعلومات التي قد تتغير بمرور الوقت. هناك تنوع كبير في أنواع ملفات التكوين. الاتجاه السائد حاليًا هو استخدام ملفات <bdi dir="ltr" class="odt-ltr-term">XML.</bdi> وهذا هو الخيار الذي اتخذته <bdi dir="ltr" class="odt-ltr-term">Spring.</bdi> قد يكون الملف الذي يقوم بتكوين كائن [<bdi dir="ltr" class="odt-ltr-term">ArticlesDaoPlainODBC</bdi>] كما يلي:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;iso-8859-1&quot; ?&gt;</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="cp">&lt;!DOCTYPE objects PUBLIC &quot;-//SPRING//DTD OBJECT//EN&quot;</span>
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="cp">&quot;http://www.springframework.net/dtd/spring-objects.dtd&quot;&gt;</span>
 <a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
 <a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="nt">&lt;objects&gt;</span>
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">     </span><span class="cm">&lt;!-- the IArticlesDao interface implementation class --&gt;</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">     </span><span class="cm">&lt;!-- فئة تنفيذ الواجهة IArticlesDao --&gt;</span>
 <a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">    </span><span class="nt">&lt;description&gt;</span>Gestion<span class="w"> </span>d&#39;une<span class="w"> </span>table<span class="w"> </span>d&#39;articles<span class="nt">&lt;/description&gt;</span>
 <a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">    </span><span class="nt">&lt;object</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;articlesdao&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;istia.st.articles.dao.ArticlesDaoPlainODBC, articlesdao&quot;</span><span class="nt">&gt;</span>
 <a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">      </span><span class="nt">&lt;constructor-arg</span><span class="w"> </span><span class="na">index=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>
@@ -670,32 +669,32 @@
 <a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="w">    </span><span class="nt">&lt;/object&gt;</span>
 <a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a><span class="nt">&lt;/objects&gt;</span>
 </code></pre></div>
-<p>يصف ملف تكوين <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> الكائنات التي سيتم إنشاء مثيلات لها. ولا يحدد الملف عمومًا متى سيتم إنشاء هذه المثيلات. وبالتالي، يتم تحديد توقيت إنشاء المثيلات بواسطة الكود الذي يستخدم هذا الملف. يمكن إنشاء مثيلات الكائنات الموصوفة في ملف تكوين <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> وتهيئتها بطريقتين مختلفتين:</p>
+<p>يصف ملف تكوين <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> الكائنات التي سيتم إنشاء مثيلات لها. ولا يحدد، بشكل عام، متى سيتم إنشاء هذه المثيلات. وبالتالي، يتم تحديد توقيت إنشاء المثيلات من خلال الكود الذي يستخدم هذا الملف. يمكن إنشاء مثيلات الكائنات الموصوفة في ملف تكوين <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> وتهيئتها بطريقتين مختلفتين:</p>
 <ul>
 <li>عن طريق تحديد المعلمات التي سيتم تمريرها إلى منشئ الكائن، كما هو موضح أعلاه</li>
-<li>عن طريق توفير قيم لخصائص الكائن. في هذه الحالة، يجب أن يكون للكائن منشئ افتراضي يستخدمه <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> لإنشاء المثيل.</li>
+<li>عن طريق توفير قيم لخصائص الكائن (<bdi dir="ltr" class="odt-ltr-term">Property</bdi>). في هذه الحالة، يجب أن يمتلك الكائن منشئًا افتراضيًا يستخدمه <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> لإنشاء مثيل له.</li>
 </ul>
-<p>غالبًا ما يتم إنشاء الكائنات في التطبيق التي تتمثل مهمتها في توفير خدمة كمثيل واحد. وتسمى هذه الكائنات <strong><bdi dir="ltr" class="odt-ltr-term">singletons</bdi></strong>. وبالتالي، في مثال التطبيق متعدد المستويات المقدم في بداية هذا المستند، سيتم التعامل مع الوصول إلى قاعدة بيانات المنتجات بواسطة مثيل واحد من فئة [<bdi dir="ltr" class="odt-ltr-term">ArticlesDaoPlainODBC</bdi>]. في تطبيق الويب، تخدم كائنات الخدمة هذه عدة عملاء في وقت واحد. ولا نقوم بإنشاء كائن خدمة لكل عميل.</p>
-<p>يسمح لك ملف تكوين <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> أعلاه بإنشاء كائن <strong>خدمة</strong> واحد من النوع [<bdi dir="ltr" class="odt-ltr-term">ArticlesDaoPlainODBC</bdi>] في حزمة تسمى [<bdi dir="ltr" class="odt-ltr-term">istia.st.articles.dao</bdi>]. يتم تعريف المعلومات الثلاث المطلوبة من قبل منشئ هذا الكائن داخل علامة <strong>&lt;<bdi dir="ltr" class="odt-ltr-term">object</bdi>&gt;...&lt;/<bdi dir="ltr" class="odt-ltr-term">object</bdi>&gt;</strong>. سيكون هناك عدد من علامات <strong>&lt;<bdi dir="ltr" class="odt-ltr-term">object</bdi>&gt;</strong> يساوي عدد الكائنات الفردية المراد إنشاؤها.</p>
-<p>دعونا نحلل التكوين:</p>
+<p>غالبًا ما يتم إنشاء الكائنات التي تقوم بدور تقديم خدمة في التطبيق بنسخة واحدة فقط. وتُسمى هذه الكائنات <strong>«<bdi dir="ltr" class="odt-ltr-term">singletons</bdi></strong>». وهكذا، في مثال التطبيق متعدد المستويات المقدم في بداية هذا المستند، سيتم توفير الوصول إلى قاعدة بيانات المقالات من خلال نسخة واحدة فقط من الفئة [<bdi dir="ltr" class="odt-ltr-term">ArticlesDaoPlainODBC</bdi>]. بالنسبة لتطبيق الويب، تخدم كائنات الخدمة هذه عدة عملاء في آن واحد. ولا يتم إنشاء كائن خدمة لكل عميل على حدة.</p>
+<p>يسمح ملف تكوين <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> أعلاه بإنشاء كائن <strong>خدمة</strong> فريد من النوع [<bdi dir="ltr" class="odt-ltr-term">ArticlesDaoPlainODBC</bdi>] في حزمة تسمى [<bdi dir="ltr" class="odt-ltr-term">istia.st.articles.dao</bdi>]. يتم تعريف المعلومات الثلاثة اللازمة لمنشئ هذا الكائن داخل علامة <strong>&lt;<bdi dir="ltr" class="odt-ltr-term">object</bdi>&gt;...&lt;/<bdi dir="ltr" class="odt-ltr-term">object</bdi>&gt;</strong>. سيكون عدد علامات <strong>&lt;<bdi dir="ltr" class="odt-ltr-term">object</bdi>&gt;</strong> هذه مساوياً لعدد الكائنات الفردية المطلوب إنشاؤها.</p>
+<p>دعونا نستعرض التكوين بالتفصيل:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nt">&lt;objects&gt;</span>
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>...
 <a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="nt">&lt;/objects&gt;</span>
 </code></pre></div>
-<p><strong>&lt;<bdi dir="ltr" class="odt-ltr-term">objects</bdi>&gt;</strong> هي العلامة الجذرية لملف تكوين <bdi dir="ltr" class="odt-ltr-term">Spring.</bdi> وهي تحدد وصف الكائنات الفردية التي سيتم إنشاء مثيلاتها.</p>
+<p><strong>&lt;<bdi dir="ltr" class="odt-ltr-term">objects</bdi>&gt;</strong> هي العلامة الجذرية لملف تكوين <bdi dir="ltr" class="odt-ltr-term">Spring.</bdi> وهي تحدد وصف الكائنات الفردية (<bdi dir="ltr" class="odt-ltr-term">singleton</bdi>) المطلوب إنشاء مثيلات لها.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="w">    </span><span class="nt">&lt;description&gt;</span>Gestion<span class="w"> </span>d&#39;une<span class="w"> </span>table<span class="w"> </span>d&#39;articles<span class="nt">&lt;/description&gt;</span>
 </code></pre></div>
-<p>العلامة <strong>&lt;<bdi dir="ltr" class="odt-ltr-term">description</bdi>&gt;</strong> اختيارية. ويمكن استخدامها، على سبيل المثال، لوصف الغرض من ملف التكوين.</p>
+<p>العلامة <strong>&lt;<bdi dir="ltr" class="odt-ltr-term">description</bdi>&gt;</strong> اختيارية. يمكن استخدامها، على سبيل المثال، لوصف دور ملف التكوين.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>&lt;object id=&quot;articlesdao&quot; type=&quot;istia.st.articles.dao.ArticlesDaoPlainODBC, articlesdao&quot;&gt;
 <a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>...    
 <a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>&lt;/object&gt;
 </code></pre></div>
-<p>تُستخدم علامة <strong>&lt;<bdi dir="ltr" class="odt-ltr-term">object</bdi>&gt;</strong> لوصف كائن سيتم إنشاء مثيل له. ولها هنا خاصيتان:</p>
+<p>تُستخدم العلامة <strong>&lt;<bdi dir="ltr" class="odt-ltr-term">object</bdi>&gt;</strong> لوصف كائن سيتم إنشاء مثيل له. ولها هنا سمتان:</p>
 <ul>
-<li><strong><bdi dir="ltr" class="odt-ltr-term">name</bdi></strong>: معرف الكائن. سيشير الكود الخارجي إلى الكائن باستخدام هذا الاسم.</li>
-<li><strong><bdi dir="ltr" class="odt-ltr-term">class</bdi></strong>: في صيغة &quot;اسم الفئة، اسم التجميع&quot;. الجزء الأول هو الاسم الكامل للفئة المراد إنشاء مثيل لها. الجزء الثاني هو اسم ملف <bdi dir="ltr" class="odt-ltr-term">DLL</bdi> الذي يحتوي على هذه الفئة. في مثالنا، توجد الفئة في ملف باسم [<bdi dir="ltr" class="odt-ltr-term">articlesdao.dll</bdi>]</li>
+<li><strong><bdi dir="ltr" class="odt-ltr-term">name</bdi></strong>: معرّف الكائن. سيشير الكود الخارجي إلى الكائن عبر هذا الاسم.</li>
+<li><strong><bdi dir="ltr" class="odt-ltr-term">class</bdi></strong>: على شكل «اسم الفئة، اسم التجميع». المعلومة الأولى هي الاسم الكامل للفئة المراد إنشاء مثيل لها. أما الثانية، فهي اسم التجميع الذي يحتوي على هذه الفئة. في مثالنا، توجد الفئة في ملف باسم [<bdi dir="ltr" class="odt-ltr-term">articlesdao.dll</bdi>]</li>
 </ul>
-<p>يُستخدم محتوى علامة <strong>&lt;<bdi dir="ltr" class="odt-ltr-term">object</bdi>&gt;</strong> لوصف كيفية إنشاء مثيل الكائن:</p>
+<p>يُستخدم محتوى العلامة <strong>&lt;<bdi dir="ltr" class="odt-ltr-term">object</bdi>&gt;</strong> لوصف طريقة إنشاء مثيل للكائن:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="w">    </span><span class="nt">&lt;object</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;articlesdao&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;istia.st.articles.dao.ArticlesDaoPlainODBC, articlesdao&quot;</span><span class="nt">&gt;</span>
 <a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">      </span><span class="nt">&lt;constructor-arg</span><span class="w"> </span><span class="na">index=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>
 <a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">            </span><span class="nt">&lt;value&gt;</span>odbc-firebird-articles<span class="nt">&lt;/value&gt;</span>
@@ -708,12 +707,12 @@
 <a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="w">        </span><span class="nt">&lt;/constructor-arg&gt;</span>
 <a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="w">    </span><span class="nt">&lt;/object&gt;</span>
 </code></pre></div>
-<p>دعونا نراجع توقيع منشئ الفئة [<bdi dir="ltr" class="odt-ltr-term">ArticlesDaoPlainODBC</bdi>]:</p>
+<p>لنتذكر توقيع الشركة المصنعة للفئة [<bdi dir="ltr" class="odt-ltr-term">ArticlesDaoPlainODBC</bdi>]:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="w">        </span><span class="k">Public</span><span class="w"> </span><span class="k">Sub</span><span class="w"> </span><span class="nf">New</span><span class="p">(</span><span class="k">ByVal</span><span class="w"> </span><span class="n">DSN</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="k">ByVal</span><span class="w"> </span><span class="n">user</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="k">ByVal</span><span class="w"> </span><span class="n">passwd</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span>
 </code></pre></div>
-<p>سيتم إنشاء مثيل لكائن <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> [<bdi dir="ltr" class="odt-ltr-term">articlesdao</bdi>] بواسطة المنشئ أعلاه باستخدام المعلومات الثلاثة الموجودة في ملف التكوين: [<bdi dir="ltr" class="odt-ltr-term">odbc-firebird-articles</bdi>، <bdi dir="ltr" class="odt-ltr-term">SYSDBA</bdi>، <bdi dir="ltr" class="odt-ltr-term">masterkey</bdi>].</p>
-<p>متى سيتم إنشاء الكائنات المحددة في ملف <bdi dir="ltr" class="odt-ltr-term">Spring</bdi>؟ يحتوي كل تطبيق على طريقة يضمن أنها ستكون أول ما يتم تنفيذه. وعادةً ما يتم طلب إنشاء الكائنات الفردية في هذه الطريقة. يمكن معالجة تهيئة التطبيق بواسطة طريقة <strong><code>main</code></strong> الخاصة بالتطبيق، إذا كان يحتوي على واحدة. بالنسبة لتطبيق <bdi dir="ltr" class="odt-ltr-term">ASP.NET</bdi>، قد تكون هذه هي الطريقة <code>[**Application\_Start**]</code> في ملف <code>[**global.asax**]</code>. بالنسبة لفئة الاختبار <code>[Nunit]</code> الخاصة بنا، تحدث تهيئة التطبيق في الطريقة المرتبطة بالسمة <strong>`&lt;Setup()``</strong>.  </p>
-<p>كيف نستخدم ملف التكوين أعلاه في فئة [<bdi dir="ltr" class="odt-ltr-term">Nunit</bdi>] الخاصة بنا؟ إليك مثال:</p>
+<p>سيتم إنشاء مثيل للكائن <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> [<bdi dir="ltr" class="odt-ltr-term">articlesdao</bdi>] بواسطة المنشئ أعلاه باستخدام المعلومات الثلاثة الموجودة في ملف التكوين: [<bdi dir="ltr" class="odt-ltr-term">odbc-firebird-articles, SYSDBA, masterkey</bdi>].</p>
+<p>متى سيتم إنشاء الكائنات المُعرَّفة في ملف <bdi dir="ltr" class="odt-ltr-term">Spring</bdi>؟ يوجد في كل تطبيق طريقة يُضمن أنها ستكون أول ما يتم تنفيذه. وعادةً ما يتم طلب إنشاء الكائنات الفردية (<bdi dir="ltr" class="odt-ltr-term">singletons</bdi>) ضمن هذه الطريقة. يمكن أن تُعهد عملية تهيئة التطبيق إلى الطريقة <strong><bdi dir="ltr" class="odt-ltr-term">main</bdi></strong> في هذا التطبيق نفسه، إن كان يحتوي على واحدة. بالنسبة للتطبيق <bdi dir="ltr" class="odt-ltr-term">ASP.NET</bdi>، قد تكون هذه هي الطريقة [<bdi dir="ltr" class="odt-ltr-term">Application</bdi>_Start] الموجودة في الملف [<bdi dir="ltr" class="odt-ltr-term">global.asax</bdi>]. بالنسبة لفئة الاختبار الخاصة بنا [<bdi dir="ltr" class="odt-ltr-term">Nunit</bdi>]، تتم تهيئة التطبيق في الطريقة المرتبطة بالسمة <strong>&lt;<bdi dir="ltr" class="odt-ltr-term">Setup</bdi>()&gt;</strong>.  </p>
+<p>كيف يمكن استخدام ملف التكوين أعلاه في فئتنا [<bdi dir="ltr" class="odt-ltr-term">Nunit</bdi>]؟ إليك مثال على ذلك:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">Imports</span><span class="w"> </span><span class="nn">System</span>
 <a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="k">Imports</span><span class="w"> </span><span class="nn">System.Collections</span>
 <a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="k">Imports</span><span class="w"> </span><span class="nn">NUnit.Framework</span>
@@ -727,24 +726,24 @@
 <a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="w">    </span><span class="o">&lt;</span><span class="n">TestFixture</span><span class="p">()</span><span class="o">&gt;</span><span class="w"> </span>_
 <a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="w">    </span><span class="k">Public</span><span class="w"> </span><span class="k">Class</span><span class="w"> </span><span class="nc">NunitSpringTestArticlesDaoPlainOdbc</span>
 <a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>
-<a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a><span class="w">        </span><span class="c">&#39; the test object</span>
+<a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a><span class="w">         </span><span class="c">&#39; الكائن المراد اختباره</span>
 <a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a><span class="w">        </span><span class="k">Private</span><span class="w"> </span><span class="n">articlesDao</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="n">IArticlesDao</span>
 <a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a>
 <a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a><span class="w">        </span><span class="o">&lt;</span><span class="n">SetUp</span><span class="p">()</span><span class="o">&gt;</span><span class="w"> </span>_
 <a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a><span class="w">        </span><span class="k">Public</span><span class="w"> </span><span class="k">Sub</span><span class="w"> </span><span class="nf">init</span><span class="p">()</span>
-<a id="__codelineno-12-19" name="__codelineno-12-19" href="#__codelineno-12-19"></a><span class="w">      </span><span class="c">&#39; retrieve an instance of the Spring object manufacturer</span>
+<a id="__codelineno-12-19" name="__codelineno-12-19" href="#__codelineno-12-19"></a><span class="w">       </span><span class="c">&#39; يتم استرداد مثيل من مُنشئ الكائنات Spring</span>
 <a id="__codelineno-12-20" name="__codelineno-12-20" href="#__codelineno-12-20"></a><span class="w">            </span><span class="k">Dim</span><span class="w"> </span><span class="n">factory</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="n">XmlObjectFactory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">New</span><span class="w"> </span><span class="n">XmlObjectFactory</span><span class="p">(</span><span class="k">New</span><span class="w"> </span><span class="n">FileStream</span><span class="p">(</span><span class="s">&quot;spring-config-plainodbc.xml&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">FileMode</span><span class="p">.</span><span class="n">Open</span><span class="p">))</span>
-<a id="__codelineno-12-21" name="__codelineno-12-21" href="#__codelineno-12-21"></a><span class="w">      </span><span class="c">&#39; request instantiation of the articles dao object</span>
+<a id="__codelineno-12-21" name="__codelineno-12-21" href="#__codelineno-12-21"></a><span class="w">       </span><span class="c">&#39; طلب إنشاء مثيل للكائن articles dao</span>
 <a id="__codelineno-12-22" name="__codelineno-12-22" href="#__codelineno-12-22"></a><span class="w">            </span><span class="n">articlesDao</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">CType</span><span class="p">(</span><span class="n">factory</span><span class="p">.</span><span class="n">GetObject</span><span class="p">(</span><span class="s">&quot;articlesdao&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">IArticlesDao</span><span class="p">)</span>
 <a id="__codelineno-12-23" name="__codelineno-12-23" href="#__codelineno-12-23"></a><span class="w">        </span><span class="k">End</span><span class="w"> </span><span class="k">Sub</span>
 <a id="__codelineno-12-24" name="__codelineno-12-24" href="#__codelineno-12-24"></a>
 <a id="__codelineno-12-25" name="__codelineno-12-25" href="#__codelineno-12-25"></a><span class="w">        </span><span class="o">&lt;</span><span class="n">Test</span><span class="p">()</span><span class="o">&gt;</span><span class="w"> </span>_
 <a id="__codelineno-12-26" name="__codelineno-12-26" href="#__codelineno-12-26"></a><span class="w">        </span><span class="k">Public</span><span class="w"> </span><span class="k">Sub</span><span class="w"> </span><span class="nf">testGetAllArticles</span><span class="p">()</span>
-<a id="__codelineno-12-27" name="__codelineno-12-27" href="#__codelineno-12-27"></a><span class="w">            </span><span class="c">&#39; visual check</span>
+<a id="__codelineno-12-27" name="__codelineno-12-27" href="#__codelineno-12-27"></a><span class="w">             </span><span class="c">&#39; التحقق البصري</span>
 <a id="__codelineno-12-28" name="__codelineno-12-28" href="#__codelineno-12-28"></a><span class="w">            </span><span class="n">listArticles</span><span class="p">()</span>
 <a id="__codelineno-12-29" name="__codelineno-12-29" href="#__codelineno-12-29"></a><span class="w">        </span><span class="k">End</span><span class="w"> </span><span class="k">Sub</span>
 <a id="__codelineno-12-30" name="__codelineno-12-30" href="#__codelineno-12-30"></a>
-<a id="__codelineno-12-31" name="__codelineno-12-31" href="#__codelineno-12-31"></a><span class="w">        </span><span class="c">&#39; screen listing</span>
+<a id="__codelineno-12-31" name="__codelineno-12-31" href="#__codelineno-12-31"></a><span class="w">         </span><span class="c">&#39; عرض الشاشة</span>
 <a id="__codelineno-12-32" name="__codelineno-12-32" href="#__codelineno-12-32"></a><span class="w">        </span><span class="k">Private</span><span class="w"> </span><span class="k">Sub</span><span class="w"> </span><span class="nf">listArticles</span><span class="p">()</span>
 <a id="__codelineno-12-33" name="__codelineno-12-33" href="#__codelineno-12-33"></a><span class="w">            </span><span class="k">Dim</span><span class="w"> </span><span class="n">articles</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="n">IList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">articlesDao</span><span class="p">.</span><span class="n">getAllArticles</span>
 <a id="__codelineno-12-34" name="__codelineno-12-34" href="#__codelineno-12-34"></a><span class="w">            </span><span class="k">For</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="kt">Integer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">To</span><span class="w"> </span><span class="n">articles</span><span class="p">.</span><span class="n">Count</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span>
@@ -755,13 +754,13 @@
 </code></pre></div>
 <p><strong>تعليقات</strong>:</p>
 <ul>
-<li>لإنشاء مثيلات للكائنات من ملف تكوين <bdi dir="ltr" class="odt-ltr-term">Spring</bdi>، نستخدم كائنًا من النوع [<bdi dir="ltr" class="odt-ltr-term">XmlObjectFactory</bdi>]. هذا كائن &quot;<bdi dir="ltr" class="odt-ltr-term">Factory</bdi>&quot;، أي كائن يُستخدم لإنشاء كائنات أخرى (<bdi dir="ltr" class="odt-ltr-term">Factory</bdi> = مصنع). يوفر <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> عدة أنواع من &quot;<bdi dir="ltr" class="odt-ltr-term">Factory</bdi>&quot; اعتمادًا على ملف التكوين المستخدم. هنا، الملف هو ملف <bdi dir="ltr" class="odt-ltr-term">XML</bdi>، لذا نستخدم النوع [<bdi dir="ltr" class="odt-ltr-term">XmlObjectFactory</bdi>].</li>
-<li>من المنطقي تمامًا أن كائن [<bdi dir="ltr" class="odt-ltr-term">XmlObjectFactory</bdi>] يتطلب اسم ملف تكوين <bdi dir="ltr" class="odt-ltr-term">XML</bdi>، وهو في هذه الحالة [<bdi dir="ltr" class="odt-ltr-term">spring-config-plainodbc.xml</bdi>]. وبشكل أكثر دقة، يتم إنشاء مثيل من النوع [<bdi dir="ltr" class="odt-ltr-term">XmlObjectFactory</bdi>] باستخدام دفق قراءة تم إنشاؤه من ملف <bdi dir="ltr" class="odt-ltr-term">XML</bdi> الذي تم توفير اسمه.</li>
-<li>بمجرد إنشاء كائن [<bdi dir="ltr" class="odt-ltr-term">XmlObjectFactory</bdi>]، يتم الحصول على كائن من ملف التكوين عبر <strong>[<bdi dir="ltr" class="odt-ltr-term">XmlObjectFactory</bdi>].<bdi dir="ltr" class="odt-ltr-term">getObject</bdi>(&quot;<bdi dir="ltr" class="odt-ltr-term">identifier</bdi>&quot;)،</strong> حيث &quot;<bdi dir="ltr" class="odt-ltr-term">identifier</bdi>&quot; هو السمة [id] لأحد الكائنات في ملف التكوين.</li>
-<li>إذا لم يكن الكائن المطلوب قد تم إنشاء مثيل له بعد، فإن <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> تقوم بإنشاء مثيل له باستخدام المعلومات الموجودة في ملف التكوين الخاص به، ثم تعيد مرجعًا إليه إلى البرنامج المستدعي. أما إذا كان الكائن قد تم إنشاء مثيل له بالفعل، فإن <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> تعيد ببساطة المرجع إلى الكائن الموجود. وهذا هو مبدأ الكائن الفريد (<bdi dir="ltr" class="odt-ltr-term">singleton</bdi>).</li>
-<li>لاحظ أن فئة الاختبار [<bdi dir="ltr" class="odt-ltr-term">Nunit</bdi>] لا تعرف اسم فئة الوصول إلى البيانات. يوجد هذا الاسم في ملف التكوين. تطلب فئة الاختبار ببساطة كائنًا ينفذ واجهة [<bdi dir="ltr" class="odt-ltr-term">IArticlesDao</bdi>]:</li>
+<li>لإنشاء مثيلات للكائنات الموجودة في ملف تكوين <bdi dir="ltr" class="odt-ltr-term">Spring</bdi>، نستخدم كائنًا من النوع [<bdi dir="ltr" class="odt-ltr-term">XmlObjectFactory</bdi>]. وهو كائن من نوع &quot;<bdi dir="ltr" class="odt-ltr-term">Factory</bdi>&quot;، <bdi dir="ltr" class="odt-ltr-term">c.a.d</bdi>، وهو كائن يُستخدم لإنشاء كائنات أخرى (<bdi dir="ltr" class="odt-ltr-term">Factory</bdi> = مصنع). يحتوي <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> على عدة أنواع من «<bdi dir="ltr" class="odt-ltr-term">Factory</bdi>» وفقًا لملف التكوين المستخدم. هنا، الملف هو <bdi dir="ltr" class="odt-ltr-term">XML</bdi>، وبالتالي نستخدم النوع [<bdi dir="ltr" class="odt-ltr-term">XmlObjectFactory</bdi>].</li>
+<li>وبشكل منطقي إلى حد ما، يحتاج كائن من النوع [<bdi dir="ltr" class="odt-ltr-term">XmlObjectFactory</bdi>] إلى اسم ملف التكوين <bdi dir="ltr" class="odt-ltr-term">XML</bdi>، وهو هنا [<bdi dir="ltr" class="odt-ltr-term">spring-config-plainodbc.xml</bdi>]. وبشكل دقيق تمامًا، يتم إنشاء مثيل للنوع [<bdi dir="ltr" class="odt-ltr-term">XmlObjectFactory</bdi>] باستخدام تدفق قراءة تم إنشاؤه من الملف <bdi dir="ltr" class="odt-ltr-term">XML</bdi> الذي يتم تحديد اسمه.</li>
+<li>بمجرد إنشاء الكائن من النوع [<bdi dir="ltr" class="odt-ltr-term">XmlObjectFactory</bdi>]، يتم الحصول على كائن من ملف التكوين بواسطة <strong>[<bdi dir="ltr" class="odt-ltr-term">XmlObjectFactory</bdi>].<bdi dir="ltr" class="odt-ltr-term">getObject</bdi>(&quot;المعرف&quot;)</strong> حيث &quot;المعرف&quot; هو السمة [id] لأحد الكائنات الموجودة في ملف التكوين.</li>
+<li>إذا لم يكن الكائن المطلوب قد تم إنشاء مثيل له من قبل، فإن <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> تقوم بإنشاء مثيل له باستخدام المعلومات الموجودة في ملف التكوين الخاص به، وتقوم بإرجاع مرجع له إلى البرنامج المستدعي. أما إذا كان الكائن قد تم إنشاء مثيل له من قبل، فإن <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> تكتفي بإرجاع مرجع الكائن الموجود بالفعل. وهذا هو مبدأ الكائن الفردي (<bdi dir="ltr" class="odt-ltr-term">singleton</bdi>).</li>
+<li>تجدر الإشارة إلى أن فئة الاختبار [<bdi dir="ltr" class="odt-ltr-term">Nunit</bdi>] لا تعرف اسم فئة الوصول إلى البيانات. هذا الاسم موجود في ملف التكوين. تكتفي فئة الاختبار بطلب كائن ينفذ الواجهة [<bdi dir="ltr" class="odt-ltr-term">IArticlesDao</bdi>]:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="w">        </span><span class="c">&#39; the test object</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="w">         </span><span class="c">&#39; الكائن المراد اختباره</span>
 <a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">        </span><span class="k">Private</span><span class="w"> </span><span class="n">articlesDao</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="n">IArticlesDao</span>
 <a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>
 <a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">        </span><span class="o">&lt;</span><span class="n">SetUp</span><span class="p">()</span><span class="o">&gt;</span><span class="w"> </span>_
@@ -770,22 +769,22 @@
 <a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="w">            </span><span class="n">articlesDao</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">CType</span><span class="p">(</span><span class="n">factory</span><span class="p">.</span><span class="n">GetObject</span><span class="p">(</span><span class="s">&quot;articlesdao&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">IArticlesDao</span><span class="p">)</span>
 <a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="w">        </span><span class="k">End</span><span class="w"> </span><span class="k">Sub</span>
 </code></pre></div>
-<p>هذا هو جوهر <bdi dir="ltr" class="odt-ltr-term">Spring.</bdi> إذا قمنا بتغيير فئة التنفيذ، فلن نحتاج إلى تغيير فئة الاختبار. سنقوم ببساطة بتعديل ملف تكوين <bdi dir="ltr" class="odt-ltr-term">Spring.</bdi> أما فئة الاختبار، فهي تعمل ببساطة مع واجهة بدلاً من فئة.</p>
+<p>وهنا يكمن الجوهر في <bdi dir="ltr" class="odt-ltr-term">Spring.</bdi> فإذا قمنا بتغيير فئة التنفيذ، فلن نضطر إلى تغيير فئة الاختبار الخاصة بنا. سنقوم ببساطة بتعديل ملف تكوين <bdi dir="ltr" class="odt-ltr-term">Spring.</bdi> أما فئة الاختبار، فهي تكتفي بالعمل مع واجهة وليس مع فئة.</p>
 <p>لنختتم هذا العرض ببعض النقاط العملية.</p>
-<p>عندما نكتب &quot;<bdi dir="ltr" class="odt-ltr-term">Spring</bdi> سيقوم بإنشاء مثيل...&quot;، ماذا نعني بالضبط؟ بالنسبة لمنصة .<bdi dir="ltr" class="odt-ltr-term">NET</bdi>، يتضمن <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> ثلاثة ملفات:</p>
+<p>عندما نكتب «<bdi dir="ltr" class="odt-ltr-term">Spring</bdi> سيقوم بإنشاء مثيل...»، ما الذي نعنيه بالضبط؟ بالنسبة لمنصة .<bdi dir="ltr" class="odt-ltr-term">NET</bdi>، يتضمن <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> ثلاثة ملفات:</p>
 <p><img src="images/10000000000001460000004E5F4351A0.png" width="326" height="78" style="width:8.624cm;height:2.064cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001460000004E5F4351A0.png" /></p>
-<p>بالنسبة لمشروع .<bdi dir="ltr" class="odt-ltr-term">NET</bdi> تم إنشاؤه باستخدام <bdi dir="ltr" class="odt-ltr-term">Visual Studio</bdi> ويحتاج إلى استخدام <bdi dir="ltr" class="odt-ltr-term">Spring</bdi>، اتبع الخطوات التالية: </p>
+<p>بالنسبة لمشروع .<bdi dir="ltr" class="odt-ltr-term">NET</bdi> الذي تم إنشاؤه باستخدام <bdi dir="ltr" class="odt-ltr-term">Visual Studio</bdi> ويجب أن يستخدم <bdi dir="ltr" class="odt-ltr-term">Spring</bdi>، سنقوم بما يلي: </p>
 <ul>
 <li>سيتم وضع الملفات الثلاثة المذكورة أعلاه في مجلد [bin] الخاص بالمشروع</li>
-<li>يجب تضمين [<bdi dir="ltr" class="odt-ltr-term">Spring.Core.dll</bdi>] في مراجع المشروع:</li>
+<li>يجب أن يكون ملف [<bdi dir="ltr" class="odt-ltr-term">Spring.Core.dll</bdi>] ضمن مراجع المشروع:</li>
 </ul>
 <p><img src="images/10000000000000970000006133FAC914.png" width="151" height="97" style="width:3.993cm;height:2.565cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000970000006133FAC914.png" /></p>
 <ul>
-<li>ويجب أن تستورد الفئات التي تستخدم <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> مساحات أسماء معينة، غالبًا ما تشمل ما يلي:</li>
+<li>يجب أن تستورد الفئات التي تستخدم <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> بعض مساحات الأسماء، ومن بينها غالبًا ما يلي:</li>
 </ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">Imports</span><span class="w"> </span><span class="nn">Spring.Objects.Factory.Xml</span>
 </code></pre></div>
-<p>نقطة عملية أخرى: أين تضع ملف تكوين <bdi dir="ltr" class="odt-ltr-term">Spring</bdi>؟ هناك عدة مواقع محتملة. أحدها هو مجلد [bin] الخاص بالمشروع. هذا هو المكان الذي تم فيه وضع ملف [<bdi dir="ltr" class="odt-ltr-term">spring-config-plainodbc.xml</bdi>] من المثال.</p>
+<p>نقطة عملية أخرى: أين نضع ملف تكوين <bdi dir="ltr" class="odt-ltr-term">Spring</bdi>؟ هناك عدة أماكن محتملة. أحدها هو المجلد [bin] الخاص بالمشروع. وهنا تم وضع الملف [<bdi dir="ltr" class="odt-ltr-term">spring-config-plainodbc.xml</bdi>] الخاص بالمثال الذي تمت دراسته.</p>
 
 
 

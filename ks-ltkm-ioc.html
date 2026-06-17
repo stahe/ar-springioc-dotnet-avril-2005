@@ -12,7 +12,7 @@
         <meta name="author" content="Serge Tahé">
       
       
-        <link rel="canonical" href="https://stahe.github.io/ar-springioc-dotnet-avril-2005/nks-ltkm-ioc.html">
+        <link rel="canonical" href="https://stahe.github.io/ar-springioc-dotnet-avril-2005/ks-ltkm-ioc.html">
       
       
         <link rel="prev" href="tkwyn-tbyq-bstkhdm-spring.html">
@@ -29,7 +29,7 @@
     
     
       
-        <title>3. انعكاس التحكم (IoC) - Spring IoC لـ .NET</title>
+        <title>3. عكس التحكم IoC - Spring IoC لـ .NET</title>
       
     
     
@@ -130,7 +130,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              3. انعكاس التحكم (IoC)
+              3. عكس التحكم IoC
             
           </span>
         </div>
@@ -368,14 +368,14 @@
         
       
       
-      <a href="nks-ltkm-ioc.html" class="md-nav__link md-nav__link--active">
+      <a href="ks-ltkm-ioc.html" class="md-nav__link md-nav__link--active">
         
   
   
   <span class="md-ellipsis">
     
   
-    3. انعكاس التحكم (IoC)
+    3. عكس التحكم IoC
   
 
     
@@ -423,14 +423,14 @@
   
   
     <li class="md-nav__item">
-      <a href="spring-ioc-fy-lmmrs-lmly.html" class="md-nav__link">
+      <a href="spring-ioc-mn-lny-lmly.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    5. Spring IoC في الممارسة العملية
+    5. Spring IoC من الناحية العملية
   
 
     
@@ -477,14 +477,14 @@
   
   
     <li class="md-nav__item">
-      <a href="ll.html" class="md-nav__link">
+      <a href="l.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    7. الحل
+    7. حل
   
 
     
@@ -541,58 +541,58 @@
 
 
 
-<h1 id="3-ioc">3. <span style="color: #365f91">انعكاس التحكم (<bdi dir="ltr" class="odt-ltr-term">IoC</bdi>)</span></h1>
-<p>لنركز الآن على مفهوم <strong>انعكاس التحكم</strong> (<bdi dir="ltr" class="odt-ltr-term">IoC</bdi>) الذي يستخدمه <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> لتكوين التطبيقات. لتوضيح هذا المفهوم، لنعد إلى بنية تطبيق الاختبار السابق:</p>
-<table dir="rtl" class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td dir="rtl" style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: right;"><img src="images/1000000000000563000000E5510FF327.png" width="680" height="113" style="display:inline-block; margin:4px;width:17.997cm;height:2.99cm;" class="odt-zoomable" data-zoom-src="images/1000000000000563000000E5510FF327.png" /></td></tr></table>
+<h1 id="3-ioc">3. <span style="color: #365f91">عكس التحكم <bdi dir="ltr" class="odt-ltr-term">IoC</bdi></span></h1>
+<p>لنركز الآن على مفهوم <strong>عكس التحكم</strong> (<bdi dir="ltr" class="odt-ltr-term">IoC</bdi>، <bdi dir="ltr" class="odt-ltr-term">Inversion of Control</bdi>) الذي يستخدمه <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> لتكوين التطبيقات. لتوضيح هذا المفهوم، لنعد إلى بنية تطبيق الاختبار السابق:</p>
+<table dir="rtl" class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td dir="rtl" style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: right;"><img src="images/1000000000000563000000E5510FF327.png" width="680" height="113" style="display:inline-block; margin:4px;width:17.997cm;height:2.988cm;" class="odt-zoomable" data-zoom-src="images/1000000000000563000000E5510FF327.png" /></td></tr></table>
 
-<p>للوصول إلى البيانات من نظام إدارة قواعد البيانات (<bdi dir="ltr" class="odt-ltr-term">DBMS</bdi>)، يجب أن تستخدم فئة الاختبار خدمات كائن ينفذ واجهة [<bdi dir="ltr" class="odt-ltr-term">IArticlesDao</bdi>]، على سبيل المثال، كائن من النوع [<bdi dir="ltr" class="odt-ltr-term">ArticlesDaoPlainODBC</bdi>]. لقد درسنا حلين ممكنين لإنشاء مثيل لمثل هذا الكائن:</p>
+<p>للوصول إلى بيانات <bdi dir="ltr" class="odt-ltr-term">SGBD</bdi>، يجب أن تستخدم فئة الاختبار خدمات كائن يُنفذ واجهة [<bdi dir="ltr" class="odt-ltr-term">IArticlesDao</bdi>]، على سبيل المثال كائن من النوع [<bdi dir="ltr" class="odt-ltr-term">ArticlesDaoPlainODBC</bdi>]. وقد درسنا حلين ممكنين لإنشاء مثيل لمثل هذا الكائن:</p>
 <ul>
-<li>في الحل الأول، طلبت فئة الاختبار نفسها إنشاء مثيل لكائن من النوع [<bdi dir="ltr" class="odt-ltr-term">ArticlesDaoPlainODBC</bdi>]:</li>
+<li>في الحل الأول، كانت فئة الاختبار تطلب بنفسها إنشاء مثيل لكائن من النوع [<bdi dir="ltr" class="odt-ltr-term">ArticlesDaoPlainODBC</bdi>]:</li>
 </ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="na">    &lt;TestFixture()&gt;</span><span class="w"> </span>_
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="k">Public</span><span class="w"> </span><span class="k">Class</span><span class="w"> </span><span class="nc">NunitTestArticlesDaoPlainOdbc</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">        </span><span class="c">&#39; the test object</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">         </span><span class="c">&#39; الكائن المراد اختباره</span>
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">        </span><span class="k">Private</span><span class="w"> </span><span class="n">articlesDao</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="n">IArticlesDao</span>
 <a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">        </span><span class="o">&lt;</span><span class="n">SetUp</span><span class="p">()</span><span class="o">&gt;</span><span class="w"> </span>_
 <a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">        </span><span class="k">Public</span><span class="w"> </span><span class="k">Sub</span><span class="w"> </span><span class="nf">init</span><span class="p">()</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">            </span><span class="c">&#39; create an instance of the object to be tested</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">             </span><span class="c">&#39; يتم إنشاء مثيل للكائن المراد اختباره</span>
 <a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">            </span><span class="n">articlesDao</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">New</span><span class="w"> </span><span class="n">ArticlesDaoPlainODBC</span><span class="p">(</span><span class="s">&quot;odbc-firebird-articles&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;SYSDBA&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;masterkey&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">        </span><span class="k">End</span><span class="w"> </span><span class="k">Sub</span>
 <a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="p">...</span>
 <a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">    </span><span class="k">End</span><span class="w"> </span><span class="k">Class</span>
 </code></pre></div>
-<p>هناك <strong>تبعية مبرمجة بشكل ثابت على اسم الفئة في الكود</strong>. إذا تغيرت الفئة التي تنفذ واجهة [<bdi dir="ltr" class="odt-ltr-term">IArticlesDao</bdi>]، <strong>فسيكون من الضروري تعديل</strong> الكود الموجود في الأسلوب [<bdi dir="ltr" class="odt-ltr-term">init</bdi>]. توجد العلاقات التالية بين الكائنات:</p>
+<p>يوجد <strong>ارتباط ثابت في الكود باسم الفئة</strong>. إذا تغيرت فئة تنفيذ الواجهة [<bdi dir="ltr" class="odt-ltr-term">IArticlesDao</bdi>]، <strong>فسيتعين تعديل</strong> كود الأسلوب [<bdi dir="ltr" class="odt-ltr-term">init</bdi>]. توجد العلاقات التالية بين الكائنات:</p>
 <table dir="rtl" class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td dir="rtl" style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: right;"><img src="images/100000000000061E0000016399938C98.png" width="680" height="154" style="display:inline-block; margin:4px;width:17.997cm;height:4.08cm;" class="odt-zoomable" data-zoom-src="images/100000000000061E0000016399938C98.png" /></td></tr></table>
 
-<p>تقوم الفئة [<bdi dir="ltr" class="odt-ltr-term">NunitTestArticlesDaoPlainOdbc</bdi>] بمبادرة إنشاء الكائن [<bdi dir="ltr" class="odt-ltr-term">ArticlesDaoPlainODBC</bdi>] الذي تحتاجه. بالعودة إلى مصطلح &quot;انعكاس التحكم&quot;، يمكننا القول إنها هي التي تمتلك &quot;التحكم&quot; في إنشاء الكائن الذي تحتاجه.</p>
+<p>تقوم الفئة [<bdi dir="ltr" class="odt-ltr-term">NunitTestArticlesDaoPlainOdbc</bdi>] بنفسها بإنشاء الكائن [<bdi dir="ltr" class="odt-ltr-term">ArticlesDaoPlainODBC</bdi>] الذي تحتاجه. وبالعودة إلى مصطلح «انعكاس التحكم»، يمكن القول إنها هي التي تمتلك «التحكم» لإنشاء الكائن الذي تحتاجه.</p>
 <ul>
-<li>الحل الثاني يتبع نهجًا مختلفًا. أصبحت فئة الاختبار كما يلي:</li>
+<li>أما الحل الثاني فيعمل بطريقة مختلفة. وأصبحت فئة الاختبار كما يلي:</li>
 </ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="na">    &lt;TestFixture()&gt;</span><span class="w"> </span>_
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="k">Public</span><span class="w"> </span><span class="k">Class</span><span class="w"> </span><span class="nc">NunitSpringTestArticlesDaoPlainOdbc</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">        </span><span class="c">&#39; the test object</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">         </span><span class="c">&#39; الكائن المراد اختباره</span>
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">        </span><span class="k">Private</span><span class="w"> </span><span class="n">articlesDao</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="n">IArticlesDao</span>
 <a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
 <a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">        </span><span class="o">&lt;</span><span class="n">SetUp</span><span class="p">()</span><span class="o">&gt;</span><span class="w"> </span>_
 <a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">        </span><span class="k">Public</span><span class="w"> </span><span class="k">Sub</span><span class="w"> </span><span class="nf">init</span><span class="p">()</span>
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">      </span><span class="c">&#39; retrieve an instance of the Spring object manufacturer</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">       </span><span class="c">&#39; استرداد مثيل من مُنشئ الكائنات Spring</span>
 <a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">            </span><span class="k">Dim</span><span class="w"> </span><span class="n">factory</span><span class="w"> </span><span class="ow">As</span><span class="w"> </span><span class="n">XmlObjectFactory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">New</span><span class="w"> </span><span class="n">XmlObjectFactory</span><span class="p">(</span><span class="k">New</span><span class="w"> </span><span class="n">FileStream</span><span class="p">(</span><span class="s">&quot;spring-config-plainodbc.xml&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">FileMode</span><span class="p">.</span><span class="n">Open</span><span class="p">))</span>
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">      </span><span class="c">&#39; request instantiation of the articles dao object</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">       </span><span class="c">&#39; طلب إنشاء مثيل للكائن articles dao</span>
 <a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">            </span><span class="n">articlesDao</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">CType</span><span class="p">(</span><span class="n">factory</span><span class="p">.</span><span class="n">GetObject</span><span class="p">(</span><span class="s">&quot;articlesdao&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">IArticlesDao</span><span class="p">)</span>
 <a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">        </span><span class="k">End</span><span class="w"> </span><span class="k">Sub</span>
 <a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">    </span><span class="p">...</span>
 <a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">    </span><span class="k">End</span><span class="w"> </span><span class="k">Class</span>
 </code></pre></div>
-<p>يمكن تلخيص هذه الآلية على النحو التالي:</p>
+<p>يمكن توضيح هذه الآلية كما يلي:</p>
 <table dir="rtl" class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td dir="rtl" style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: right;"><img src="images/10000000000005B7000001798106E4DD.png" width="680" height="175" style="display:inline-block; margin:4px;width:17.997cm;height:4.637cm;" class="odt-zoomable" data-zoom-src="images/10000000000005B7000001798106E4DD.png" /></td></tr></table>
 
-<p>هنا، لا تأخذ فئة الاختبار زمام المبادرة لطلب إنشاء كائن [<bdi dir="ltr" class="odt-ltr-term">ArticlesDaoPlainODBC</bdi>]. بل تطلب ببساطة من <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> مرجعًا إلى هذا الكائن. إذا كان الكائن موجودًا، يعرض <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> مرجعًا إليه. وإذا لم يكن موجودًا، يقوم <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> بإنشائه. فقدت فئة الاختبار السيطرة على إنشاء كائن [<bdi dir="ltr" class="odt-ltr-term">ArticlesDaoPlainODBC</bdi>]. فهي تطلب ببساطة مرجعًا إلى هذا الكائن. سيجبر هذا الطلب <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> على إنشاء الكائن في هذه الحالة. ومع ذلك، في سياق آخر، يمكن للمرء أن يتخيل أن الكائن المطلوب قد تم إنشاؤه بالفعل بناءً على طلب التطبيق. عندئذٍ لا يعيد <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> إنشاء الكائن بل يعيد مرجعًا إلى الكائن الموجود (<bdi dir="ltr" class="odt-ltr-term">singleton</bdi>). يعني مفهوم انعكاس التحكم (<bdi dir="ltr" class="odt-ltr-term">IoC</bdi>) هنا:</p>
+<p>هنا، لا تأخذ فئة الاختبار زمام المبادرة في طلب إنشاء كائن [<bdi dir="ltr" class="odt-ltr-term">ArticlesDaoPlainODBC</bdi>]. بل تكتفي بطلب مرجع إلى هذا الكائن من <bdi dir="ltr" class="odt-ltr-term">Spring.</bdi> إذا كان الكائن موجودًا، فإن <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> تعطي مرجعًا إليه. وإذا لم يكن موجودًا، فإنها تقوم بإنشائه. فقدت فئة الاختبار السيطرة على إنشاء الكائن [<bdi dir="ltr" class="odt-ltr-term">ArticlesDaoPlainODBC</bdi>]. فهي تطلب ببساطة مرجعًا لهذا الكائن. سيؤدي هذا الطلب هنا إلى إجبار <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> على إنشاء الكائن. لكن يمكننا أن نتصور، في سياق آخر، أن الكائن المطلوب قد تم إنشاؤه بالفعل بناءً على طلب التطبيق. في هذه الحالة، لا يعيد <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> إنشاء الكائن، بل يقدم مرجعًا إلى الكائن الموجود بالفعل (السينجلتون). ويعني مفهوم «انعكاس التحكم» (<bdi dir="ltr" class="odt-ltr-term">IoC</bdi>) هنا:</p>
 <ul>
-<li>أن التطبيق لا يأخذ أبدًا زمام المبادرة لإنشاء الكائنات الفردية التي يحتاجها. بل يطلب ببساطة إشارات إليها.</li>
-<li><bdi dir="ltr" class="odt-ltr-term">Spring</bdi> هو الذي يقرر إنشاء كائن فريد عند أول طلب للحصول على مرجع إليه</li>
+<li>أن التطبيق لا يبادر أبدًا بإنشاء الكائنات الفردية التي يحتاجها. بل يكتفي بطلب الإشارات إليها.</li>
+<li><bdi dir="ltr" class="odt-ltr-term">Spring</bdi> هو الذي يتخذ قرار إنشاء كائن فريد عند أول طلب للحصول على مرجع له</li>
 </ul>
 
 

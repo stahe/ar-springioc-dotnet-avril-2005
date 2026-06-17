@@ -369,14 +369,14 @@
   
   
     <li class="md-nav__item">
-      <a href="nks-ltkm-ioc.html" class="md-nav__link">
+      <a href="ks-ltkm-ioc.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    3. انعكاس التحكم (IoC)
+    3. عكس التحكم IoC
   
 
     
@@ -423,14 +423,14 @@
   
   
     <li class="md-nav__item">
-      <a href="spring-ioc-fy-lmmrs-lmly.html" class="md-nav__link">
+      <a href="spring-ioc-mn-lny-lmly.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    5. Spring IoC في الممارسة العملية
+    5. Spring IoC من الناحية العملية
   
 
     
@@ -477,14 +477,14 @@
   
   
     <li class="md-nav__item">
-      <a href="ll.html" class="md-nav__link">
+      <a href="l.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    7. الحل
+    7. حل
   
 
     
@@ -541,21 +541,21 @@
 
 
 
-<h1 id="1">1. <span style="color: #365f91">مقدمة</span></h1>
-<p>ملف <bdi dir="ltr" class="odt-ltr-term">PDF</bdi> للوثيقة متاح |<a href="https://1drv.ms/b/c/f53a919f43d27eb5/IQDJ6UfP02_MTIywzNaAXYk4ASB9d0BWQbLY8mnMWSwKMSw?e=kggIHF">هنا</a>|.</p>
-<p>الأمثلة الواردة في هذا المستند موجودة |<a href="https://1drv.ms/u/c/f53a919f43d27eb5/IQBD8ilkSZuHSZM0jwgG8gHWAYT09DIhc4b_VvzfCtVhHq4?e=ydTINN">هنا</a>|.</p>
-<p><strong>الغرض من هذا المستند</strong>:</p>
+<h1 id="1">1. <span style="color: #365f91"><strong>مقدمة</strong></span></h1>
+<p>يتوفر ملف <bdi dir="ltr" class="odt-ltr-term">PDF</bdi> الخاص بالوثيقة |<a href="https://1drv.ms/b/c/f53a919f43d27eb5/IQDJ6UfP02_MTIywzNaAXYk4ASB9d0BWQbLY8mnMWSwKMSw?e=47dg3z"><bdi dir="ltr" class="odt-ltr-term">HERE</bdi></a>|.</p>
+<p>أمثلة هذا المستند هي |<a href="https://1drv.ms/u/c/f53a919f43d27eb5/IQBD8ilkSZuHSZM0jwgG8gHWAYT09DIhc4b_VvzfCtVhHq4?e=pPyXdr"><bdi dir="ltr" class="odt-ltr-term">HERE</bdi></a>|.</p>
+<p><strong>أهداف الوثيقة</strong>:</p>
 <ul>
-<li>استكشاف خيارات التكوين والتكامل لإطار عمل <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> (<a href="http://www.springframework.org/"><u><span style="color: #0563c1"><bdi dir="ltr" class="odt-ltr-term">http://www.springframework.org</bdi></span></u></a>) لتطبيق .<bdi dir="ltr" class="odt-ltr-term">NET</bdi> (<a href="http://www.springframework.net/"><u><span style="color: #0563c1"><bdi dir="ltr" class="odt-ltr-term">http://www.springframework.net/</bdi></span></u></a>)</li>
-<li>تحديد واستخدام مفهوم <bdi dir="ltr" class="odt-ltr-term">IoC</bdi> (انعكاس التحكم)، المعروف أيضًا باسم حقن التبعية</li>
+<li>اكتشاف إمكانيات تكوين وتكامل إطار عمل <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> (<a href="http://www.springframework.org/"><u><span style="color: #0563c1"><bdi dir="ltr" class="odt-ltr-term">http://www.springframework.org</bdi></span></u></a>) لتطبيق .<bdi dir="ltr" class="odt-ltr-term">NET</bdi> (<a href="http://www.springframework.net/"><u><span style="color: #0563c1"><bdi dir="ltr" class="odt-ltr-term">http://www.springframework.net/</bdi></span></u></a>)</li>
+<li>تحديد واستخدام مفهوم <bdi dir="ltr" class="odt-ltr-term">IoC</bdi> (انعكاس التحكم)، المعروف أيضًا باسم حقن التبعية (<bdi dir="ltr" class="odt-ltr-term">Dependency Injection</bdi>)</li>
 </ul>
 <hr style="border:0; border-top:0.99pt solid #000000; margin:0.75em 0;" data-odt-border="top" />
-<p>الأفكار المعروضة في هذا المستند مستمدة من كتاب قرأته في صيف عام 2004، وهو عمل رائع <strong>لرود جونسون: <bdi dir="ltr" class="odt-ltr-term">J2EE Development without EJB</bdi>،</strong> الصادر عن <strong>دار <bdi dir="ltr" class="odt-ltr-term">Wrox</bdi> للنشر</strong>.</p>
+<p>الأفكار الواردة في هذا المستند مستمدة من كتاب قرأته خلال صيف عام 2004، وهو عمل رائع <strong>لرود جونسون بعنوان: «التطوير بدون <bdi dir="ltr" class="odt-ltr-term">EJB</bdi>» (<bdi dir="ltr" class="odt-ltr-term">J2EE Development without EJB</bdi>)</strong> الصادر عن دار نشر <strong><bdi dir="ltr" class="odt-ltr-term">Wrox</bdi></strong>.</p>
 <hr style="border:0; border-top:0.99pt solid #000000; margin:0.75em 0;" data-odt-border="bottom" />
-<p>تمت كتابة وثيقة <strong><bdi dir="ltr" class="odt-ltr-term">Spring IoC</bdi> لـ <bdi dir="ltr" class="odt-ltr-term">Java</bdi></strong> بالفعل [<a href="https://stahe.github.io/ar-java-spring-dec-2015/lmqrr-mqdm-l-r-ml-spring.html"><u><span style="color: #0563c1"><bdi dir="ltr" class="odt-ltr-term">https://stahe.github.io/ar-java-spring-dec-2015/lmqrr-mqdm-l-r-ml-spring.html</bdi></span></u></a>]. تغطي هذه الوثيقة نفس المحتوى ولكنها تكيفه مع منصة .<bdi dir="ltr" class="odt-ltr-term">NET.</bdi> لغة .<bdi dir="ltr" class="odt-ltr-term">NET</bdi> المستخدمة في الأمثلة هي <bdi dir="ltr" class="odt-ltr-term">VB.NET.</bdi></p>
-<p><strong><bdi dir="ltr" class="odt-ltr-term">Spring.net</bdi></strong> حاليًا في الإصدار <bdi dir="ltr" class="odt-ltr-term">0.6 RC3</bdi> فقط (أبريل 2005). انظر الملحق لمعرفة مكان العثور عليه. نظرًا <strong>لأن <bdi dir="ltr" class="odt-ltr-term">Spring.net</bdi></strong> لا يزال قيد التطوير، لم يتم حتى الآن نقل سوى بعض ميزات <bdi dir="ltr" class="odt-ltr-term">Spring/Java</bdi>، ولكن هذه هي الميزات التي تشكل جوهر <bdi dir="ltr" class="odt-ltr-term">Spring:</bdi> <strong>انعكاس التحكم</strong> (<bdi dir="ltr" class="odt-ltr-term">IoC</bdi>) <strong>والبرمجة الموجهة نحو الجوانب</strong> (<bdi dir="ltr" class="odt-ltr-term">AOP</bdi>). نقدم هنا مفهوم انعكاس التحكم فقط.</p>
-<p>من المحتمل أن تتغير بعض التفاصيل الفنية المعروضة هنا في المستقبل. لا تكمن قيمة <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> في هذه التفاصيل الفنية بل في فلسفتها. وهذه الفلسفة هي ما ندعو القارئ لاكتشافها.</p>
-<p>يقدم القسم العملي من هذا المستند عدة أمثلة. وهي تستخدم فئات اختبار <strong><bdi dir="ltr" class="odt-ltr-term">NUnit</bdi></strong>. وهذه هي المكافئ في .<bdi dir="ltr" class="odt-ltr-term">NET</bdi> لفئات اختبار <strong><bdi dir="ltr" class="odt-ltr-term">JUnit</bdi></strong> في <bdi dir="ltr" class="odt-ltr-term">Java.</bdi> في الملحق، ستجد من أين يمكنك الحصول على [<bdi dir="ltr" class="odt-ltr-term">NUnit</bdi>] وكيفية تثبيته. </p>
+<p>وقد تمت بالفعل كتابة وثيقة <strong><bdi dir="ltr" class="odt-ltr-term">Spring IoC</bdi> الخاصة بلغة <bdi dir="ltr" class="odt-ltr-term">Java</bdi></strong> [<a href="https://stahe.github.io/ar-java-spring-dec-2015/"><u><span style="color: #0563c1">مقدمة إلى لغة <bdi dir="ltr" class="odt-ltr-term">Java</bdi> ونظام <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> من خلال دراسة حالة (2015)</span></u></a>]. يستند هذا المستند إلى نفس المحتوى ولكنه يكيّفه مع منصة .<bdi dir="ltr" class="odt-ltr-term">NET.</bdi> لغة .<bdi dir="ltr" class="odt-ltr-term">NET</bdi> المستخدمة في الأمثلة هي <bdi dir="ltr" class="odt-ltr-term">VB.NET.</bdi></p>
+<p>لا تزال <strong><bdi dir="ltr" class="odt-ltr-term">Spring.net</bdi></strong> في الإصدار <bdi dir="ltr" class="odt-ltr-term">0.6 RC3</bdi> (أبريل 2005). يمكن العثور على مكان الحصول عليه في الملحق. ونظرًا لأن <strong><bdi dir="ltr" class="odt-ltr-term">Spring.net</bdi></strong> لا يزال قيد التطوير، فلم يتم حتى الآن نقل سوى بعض ميزات <bdi dir="ltr" class="odt-ltr-term">Spring/Java</bdi>، ولكنها تلك التي تشكل جوهر <bdi dir="ltr" class="odt-ltr-term">Spring:</bdi> <strong>عكس التحكم</strong> (<bdi dir="ltr" class="odt-ltr-term">IoC</bdi>) <strong>والبرمجة الموجهة نحو الجوانب</strong> (<bdi dir="ltr" class="odt-ltr-term">AOP</bdi>). ونكتفي هنا بعرض مفهوم عكس التحكم فقط.</p>
+<p>من المحتمل أن تتغير بعض التفاصيل التقنية المعروضة هنا في المستقبل. ولا تكمن أهمية <bdi dir="ltr" class="odt-ltr-term">Spring</bdi> في هذه التفاصيل التقنية، بل في فلسفتها. وهذا ما ندعو القارئ لاكتشافه.</p>
+<p>يقدم الجزء العملي من هذا المستند عدة أمثلة. تستخدم هذه الأمثلة فئات الاختبار <strong><bdi dir="ltr" class="odt-ltr-term">Nunit</bdi></strong>. وهي تعادل في .<bdi dir="ltr" class="odt-ltr-term">NET</bdi> فئات الاختبار <strong><bdi dir="ltr" class="odt-ltr-term">Junit</bdi></strong> في لغة <bdi dir="ltr" class="odt-ltr-term">Java.</bdi> وفي الملحق، ستجدون أين يمكن العثور على [<bdi dir="ltr" class="odt-ltr-term">Nunit</bdi>] وكيفية تثبيته. </p>
 
 
 
